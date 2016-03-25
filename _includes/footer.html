@@ -1,0 +1,24 @@
+<script>
+  (function(document) {
+    var toggle = document.querySelector('.sidebar-toggle');
+    var sidebar = document.querySelector('#sidebar');
+    var checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+
+      if(!checkbox.checked ||
+         sidebar.contains(target) ||
+         (target === checkbox || target === toggle)) return;
+
+      checkbox.checked = false;
+    }, false);
+  })(document);
+</script>
+<script src="{{site.basurl}}/public/scripts/jquery-2.1.4.min.js"></script>
+<script src="{{site.basurl}}/public/scripts/d3.min.js"></script>
+<script src="{{site.basurl}}/public/scripts/d3-tip.js"></script>
+<script src="{{site.basurl}}/public/scripts/spotify-web-api.js"></script>
+<script src="{{site.basurl}}/public/scripts/count.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.13/bootstrap-slider.min.js"></script>
+<script src="{{site.basurl}}/public/scripts/dominance.js"></script>

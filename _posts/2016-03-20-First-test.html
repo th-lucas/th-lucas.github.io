@@ -1,0 +1,276 @@
+---
+layout: post
+title:  "Analysis of the popular music of the last 65 years"
+date:   2016-03-20 22:43:00 +0000
+categories: jekyll update
+excerpt: "Whether one likes it or not, music is an art that does not let people indifferent. With the development of various technologies like the radio, the TV and most recently the Internet, it gets easier and easier for most people to listen to music. It is now possible to choose the songs you like in a huge catalog of musical styles, bands and singers coming from all over the world."
+---
+
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			Whether one likes it or not, music is an art that does not let people indifferent. With the development of various technologies like the radio, the TV and most recently the Internet, it gets easier and easier for most people to listen to music. It is now possible to choose the songs you like in a huge catalog of musical styles, bands and singers coming from all over the world. 
+		</p>
+		<p>
+			Even if the musical diversity is amazing today and if everyone's taste differs, it cannot be denied that some artists, bands and songs have marked the last 50 to 60 years of music history. 
+		</p>
+		<p>
+			Rankings like the <i>Billboard</i> Hot 100 try to classify and rank the popularity and success of songs and artists over time. This chart, created in 1958, is the music industry standard in the United States for singles. Chart rankings are based on radio play, online streaming, and sales (physical and digital). As the US are very influent regarding music tastes, the <i>Billboard</i> Hot 100 can be used as a good estimation of the worlwide music trends.
+		</p>
+		<p>
+			<i>Billboard</i> also provides year-end charts running from the first week of December to the final week in November. These rankings give an interesting overview of what happened during the year, who are the most dominant artists, which are the most remarkable songs of the year and so on. Therefore, by combining the year-end rankings it seems possible to analyze musical trends year by year, decade by decade and even on larger periods.
+		</p>
+		<p>
+			Using this data as starting point, my objective in the following article is to try to find some interesting patterns in the popular music of the last half-century, song or artist related, and to discover and let other people discover new tracks and singers.
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h3>
+			Data Wrangling and Dataset Visualizations
+		</h3>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			<i>Wikipedia</i> brings together all the <i>Billboard</i> year-end charts. An example can be found here: <a target='_blank' href='https://en.wikipedia.org/wiki/Billboard_Year-End_Hot_100_singles_of_2015'>Billboard Year-End 2015</a>. Using the Python library <mark>Beautiful Soup</mark>, I have extracted all this data into separate CSV files (on per year). Then these files have been merged in a Pandas dataframe to let me manipulate, aggregate and transform the data.
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h5>
+			# of tracks by artist VS # of years of presence in the <i>Billboard</i> Hot 100
+		</h5>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			Firstly, I was very interested in trying to identify what are the artists or bands who have the highest number of songs ranked in the <i>Billboard</i> Hot 100. Some choices have been made in the way to count the number of tracks for each artist:
+		</p>
+		<div class='well well-sm'>
+			<ul>
+				<li>
+					If a song is a featuring, the same significance has been given to each artist contribution. <br/>
+					E.g. <i>Ne-Yo featuring Juicy J - She Knows</i> will give one song for Ne-Yo and one for Juicy J.
+				</li>
+				<li>
+					If the artist name includes an '&', it is assumed that it is a band or an indivisible duo / trio... <br/>
+					E.g. <i>Kool & the Gang - Celebration</i> will give one song for Kool & the Gang.
+				</li>
+				<li>
+					If the artist name includes an 'and', I have handled two separate cases:
+					<ol>
+						<li>
+							If the song has been released before 1982, the artist has been considered as a band, as it seems very frequent to have band names like <i>Derek and the Dominos</i> in those years. <br/>
+							E.g. <i>Derek and the Dominos - Layla</i> will give one song for Derek and the Dominos.
+						</li>
+						<li>
+							If the song has been released in 1982 and after, the same significance has been given to each artist contribution. <br/>
+							E.g. <i>R. Kelly and Celine Dion - I'm Your Angel</i> will give one song for R. Kelly and one for Celine Dion.
+						</li>
+					</ol>
+				</li>
+				<li>
+					Some exceptions have been handled manually. <br/>
+					E.g. <i>Evan and Jaron - Crazy for This Girl</i> (released in 2001) will give one song for Evan and Jaron.
+				</li>
+			</ul>
+		</div>
+		<p>
+			This methodology is not perfect, but it seems reasonable and accurate enough for the study. The choice of 1982 has been done by looking into the data and investigating manually on the band names.
+		</p>
+		<p>
+			Taken alone the number of tracks ranked in the <i>Billboard</i> Hot 100 year-end is interesting but as these figures are not time related, it is difficult to really compare the top performers and to try to identify some potential raising stars / long term performers. That is why I have decided to combine that value with another feature which is the number of years of presence in the charts. Therefore, it will be possible to be concerned about the success of an artist but also about his longevity. Indeed, flooding the charts with a lot of songs during less than five years does not send the same message as being present in the <i>Billboard</i> ranking with one song every year for more than a decade. 
+		</p>
+		<p>
+			To represent this information, I have chosen to use an interactive scatter plot showing the number of tracks in the <i>Billboard</i> Hot 100 year-end on the x-axis and the number of years of presence in that chart on the y-axis. In addition, this scatter plot has some custom features:
+		</p>
+		<div class='well well-sm'>
+			<ul>
+				<li>
+					When you hover over a circle, it gets bigger and a tooltip displays the name of the artist and his number of songs in the top and his number of years of presence in the <i>Billboard</i> Hot 100.
+				</li>
+				<li>
+					When a circle has a red outline, it means that two (or more) artists have the same characteristics i.e. same number of songs and same number of years of presence in the <i>Billboard</i> Hot 100 (year end). <br/>Jittering has been used to display the different circles when they have the same coordinates.
+				</li>
+				<li>
+					You can click on an artist's circle to have more details about this singer or band. A table will show up below the graph with the name, release year and rank of all the tracks ranked in the <i>Billboard</i> Hot 100 for this particular artist. You can also play a preview of the track (30 seconds). To be able to preview the track, I have used the <mark>Spotify Web API</mark>.
+				</li>
+				<li>
+					Using the buttons on the top right corner of the graph you can choose how many artists you want to display on the graph.
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class='row top-buffer'>
+	<div class='col-md-12 numberOfArtistsSelectorParent'>
+		<div id='numberOfArtistsSelector' class='btn-group'>
+			<button type='button' class='btn btn-default' id='btn-10' data-val='10'>Top 10</button>
+			<button type='button' class='btn btn-default' id='btn-25' data-val='25'>Top 25</button>
+			<button type='button' class='btn btn-default active' id='btn-50' data-val='50'>Top 50</button>
+			<button type='button' class='btn btn-default' id='btn-100' data-val='100'>Top 100</button>
+		</div>
+	</div>
+</div>
+
+<div class='chart-container'>
+	<! -- Non data-driven elements -->
+	<svg id='chart'>
+		<g id='chart-wrapper1' class='chart-wrapper'>
+			<g class='x axis'> </g>
+			<g class='y axis'> </g>
+			<g class='grids'></g>
+			<g class='circles'>
+				<g class='defs'></g>
+			</g>
+		</g>
+	</svg>
+</div>
+
+<div class='row'>
+	<div class='col-md-12'>
+		<div class='bs-callout bs-callout-info artistDetails' id='artistDetails'>
+			<button type="button" class="close" id="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class='row'>
+				<div class='col-md-3 col-sm-4 col-xs-4'>
+					<div class='artistNameImageDiv'>
+						<img class='artistNameImage img-thumbnail img-responsive'>
+					</div>
+				</div>
+				<div class='col-md-9 col-sm-8 col-xs-8'>
+					<div class='artistNameTitleDiv'>
+						<h3 class='artistNameTitle'></h3>
+					</div>
+				</div>
+
+			</div>
+			<div class='row'>
+				<div class='col-md-12'>
+					<div class='artistSongListDiv'>
+						<table class='table table-hover'>
+							<thead>
+								<tr>
+									<th>Song Title</th>
+									<th>Year</th>
+									<th>Rank</th>
+									<th>Track Preview</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='row top-buffer'>
+	<div class='col-md-12'>
+		<p>
+			Visually we can observe a trend. It seems that the more years you spend in the charts, the more ranked tracks you have. This is quite logical. By displaying the 100 most represented artists in the <i>Billboard</i> Hot 100, we can also notice a kind of boundary located around 17 tracks ranked in the charts. Indeed, approximately 70 artists among the top 100 have 17 and less tracks ranked and only around 30 have more than 17 tracks in the <i>Billboard</i> charts.
+		</p>
+		<p>
+			To try to formalize this trend and identify which relation exists between the number of tracks and the number of years of presence in the charts, I have used a linear regression on the top 100 artists. The parameters of the linear regression have been estimated using <mark>scikit-learn</mark>.
+		</p>
+		<p>
+			- Linear regression on the top 100 <br/>
+			- Speak about high longevity artists (Madonna, Mariah Carey, Elton John, Stevie Wonder) and also "hit machine" and raising top performers <br />
+			- Say that it seems that recent artists seem to be more represented
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h5>
+			Artist Familiarity / 'Hotttnesss' VS Artist Dominance
+		</h5>
+	</div>
+</div>
+<div class='row top-buffer'>
+	<div class='col-md-4 col-sm-4'>
+		<div id='hotttnessOrFamiliaritySelector' class='btn-group'>
+			<button type='button' class='btn btn-default active' id='btn-hotttnesss' data-val='Hotttnesss'>Hotttnesss</button>
+			<button type='button' class='btn btn-default' id='btn-familiarity' data-val='Familiarity'>Familiarity</button>
+		</div>
+	</div>
+	<div class='col-md-8 col-sm-8 numberOfArtistsSelectorParent'>
+		<div id='numberOfArtistsSelector2' class='btn-group'>
+			<button type='button' class='btn btn-default' id='btn-10' data-val='10'>Top 10</button>
+			<button type='button' class='btn btn-default active' id='btn-25' data-val='25'>Top 25</button>
+			<button type='button' class='btn btn-default' id='btn-50' data-val='50'>Top 50</button>
+			<button type='button' class='btn btn-default' id='btn-100' data-val='100'>Top 100</button>
+		</div>
+	</div>
+</div>
+	
+<div class='chart-container'>
+	<! -- Non data-driven elements -->
+	<svg id='chart2'>
+		<g id='chart-wrapper2' class='chart-wrapper'>
+			<g class='x axis'> </g>
+			<g class='y axis'> </g>
+			<g class='grids'></g>
+			<g class='circles'>
+				<g class='defs'></g>
+			</g>
+		</g>
+	</svg>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+		<span class="slider-label">1960</span> 
+		<input id="dateRangeSlider" type="text" value="" data-slider-min="1960" data-slider-max="2015" data-slider-step="1" data-slider-value="[1960, 2015]"/> 
+		<span class="slider-label">2015</span> 
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<div class='bs-callout bs-callout-info artistDetails' id='artistDetails2'>
+			<button type="button" class="close" id="close2" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class='row'>
+				<div class='col-md-3 col-sm-4 col-xs-4'>
+					<div class='artistNameImageDiv'>
+						<img class='artistNameImage img-thumbnail img-responsive'>
+					</div>
+				</div>
+				<div class='col-md-9 col-sm-8 col-xs-8'>
+					<div class='artistNameTitleDiv'>
+						<h3 class='artistNameTitle'></h3>
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='col-md-12'>
+					<div class='artistSongListDiv'>
+						<table class='table table-hover'>
+							<thead>
+								<tr>
+									<th>Song Title</th>
+									<th>Year</th>
+									<th>Rank</th>
+									<th>Track Preview</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
