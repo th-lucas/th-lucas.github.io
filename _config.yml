@@ -6,19 +6,25 @@ permalink:           pretty
 # Setup
 title:               Thomas Lucas
 tagline:             'Knowledge is Beautiful'
-description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:                 http://lanyon.getpoole.com
+description:         'Made by Thomas Lucas'
+url:                 http://th-lucas.github.io/
 baseurl:             ''
 gems:                [jekyll-paginate]
 paginate:            5
 paginate_path:       "page:num"
-excerpt_separator: <!--more-->
+excerpt_separator:   <!--more-->
 
 # About/contact
+test:               test
+
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:             Thomas Lucas
+  github:           th-lucas
+  email:            thomas.lucas88@gmail.com
+  linkedin:         thomas-lucas-2a47898b
+
+github:
+  repo:           https://github.com/th-lucas/th-lucas.github.io
 
 # Custom vars
 version:             1.0.0

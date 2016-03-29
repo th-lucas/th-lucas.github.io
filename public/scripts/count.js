@@ -11,7 +11,8 @@
  	nbOfArtists = parseInt(nbOfArtists);
 
  	// Populates the dataset from a CSV file and creates
-	d3.csv('/public/csv/billboard_data.csv', function(error, data) {
+ 	var dsv = d3.dsv(";", "text/plain");
+	dsv('/public/csv/billboard_df-artist_count.csv', function(error, data) {
 		if(error){ 
 			throw error;
 		}
@@ -50,10 +51,31 @@
 		updatePatterns(dataset);
 		// Circles creation
 		updateCircles(dataset);
+		// Regression line
+		drawRegressionLine(countMax, countMin);
 		// Resize
 		d3.select(window).on('resize', resize); 
 		resize();	
 	});
+}
+
+// Plot the regression line - the coordinates of the line have been calculated using scikit learn
+function drawRegressionLine(countMax, countMin){
+	var coeff = 0.31592062,
+		intercept = 3.32566998;
+
+	var regressionLineCheckbox = d3.select('#showRegressionLineCheckbox');
+	var displayType = regressionLineCheckbox[0][0].checked ? "block" : "none";
+
+	container.append("line")
+		.attr("id", "regressionLine")
+     	.attr("x1", function(d) { return xScale(countMin); })
+     	.attr("y1", function(d) { return yScale(coeff * countMin + intercept); })
+     	.attr("x2", function(d) { return xScale(countMax); })
+     	.attr("y2", function(d) { return yScale(coeff * countMax + intercept); })
+     	.attr("stroke-width", 2)
+        .attr("stroke", "#656D78")
+        .style('display', displayType);
 }
 
 // Update loop which builds the patterns elements (used to display the artist images)
@@ -109,7 +131,7 @@ function updateCircles(dataset) {
 	u.enter()
 		.append('circle')
 		.attr('class', function(d) {
-			var allCircles = d3.selectAll('circle');
+			var allCircles = container.selectAll('circle');
 			var filteredCircles = allCircles.filter(function(x) {
 				return (d['Counts'] == x['Counts']) && (d['Years of presence'] == x['Years of presence']);
 			});
@@ -121,7 +143,7 @@ function updateCircles(dataset) {
 			}
 		});
 
-	//u.exit().remove();
+	u.exit().remove();
 
 	u.attr('cx', function(d) {
 			if(d3.select(this).classed('multipleArtists')){
@@ -383,6 +405,17 @@ function resize() {
 		})
 		.attr('cy', function(d) {return yScale(d['Years of presence']);})
 		.attr('r', radius);
+
+	var coeff = 0.31592062,
+		intercept = 3.32566998;
+
+	var countMax = d3.max(dataset, function(d) { return d['Counts']; });
+	var countMin = d3.min(dataset, function(d) { return d['Counts']; });
+	container.select("#regressionLine")
+		.attr("x1", function(d) { return xScale(countMin); })
+     	.attr("y1", function(d) { return yScale(coeff * countMin + intercept); })
+     	.attr("x2", function(d) { return xScale(countMax); })
+     	.attr("y2", function(d) { return yScale(coeff * countMax + intercept); });
 }
 
 function clearGraph(){
@@ -390,6 +423,7 @@ function clearGraph(){
 	clearPatterns();
 	clearCircles();
 	clearAxisTitles();
+	clearRegressionLine();
 }
 
 function clearGrids(){
@@ -407,6 +441,10 @@ function clearCircles(){
 function clearAxisTitles(){
 	container.select('.x.axis').selectAll('text').remove();
 	container.select('.y.axis').selectAll('text').remove();
+}
+
+function clearRegressionLine(){
+	container.select("#regressionLine").remove();
 }
 
 // Function which takes a string and return its camelized version (useful for DOM elements ID)
@@ -507,6 +545,15 @@ grouppedButtons.on('click', function(){
 	clearGraph();
 	createChart();
 });
+
+// 
+var regressionLineCheckbox = d3.select('#showRegressionLineCheckbox');
+regressionLineCheckbox.on("change", function() {
+    var displayType = this.checked ? "block" : "none";
+    container.select("#regressionLine")
+    		.style('display', displayType); 
+});
+
 
 // Close button for the artist details area
 d3.select('#close').on('click', function(){

@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Analysis of the popular music of the last 65 years"
-date:   2016-03-20 22:43:00 +0000
+title:  "The Popular Music over the last 55 years"
+date:   2016-03-29 22:00:00 +0000
 categories: jekyll update
-excerpt: "Whether one likes it or not, music is an art that does not let people indifferent. With the development of various technologies like the radio, the TV and most recently the Internet, it gets easier and easier for most people to listen to music. It is now possible to choose the songs you like in a huge catalog of musical styles, bands and singers coming from all over the world."
+excerpt: "Whether one likes it or not, music is an art that does not let people indifferent. At a time when listening to music has never been easier, I felt interesting to have a closer look at what are the characteristics of popular music and popular artists over the last half-century."
 ---
 
 <div class='row'>
@@ -15,7 +15,7 @@ excerpt: "Whether one likes it or not, music is an art that does not let people 
 			Even if the musical diversity is amazing today and if everyone's taste differs, it cannot be denied that some artists, bands and songs have marked the last 50 to 60 years of music history. 
 		</p>
 		<p>
-			Rankings like the <i>Billboard</i> Hot 100 try to classify and rank the popularity and success of songs and artists over time. This chart, created in 1958, is the music industry standard in the United States for singles. Chart rankings are based on radio play, online streaming, and sales (physical and digital). As the US are very influent regarding music tastes, the <i>Billboard</i> Hot 100 can be used as a good estimation of the worlwide music trends.
+			Rankings like the <i>Billboard</i> Hot 100 try to classify and rank the popularity and success of songs and artists over time. This chart, created in 1958, is the music industry standard in the United States for singles. Chart rankings are based on radio play, on-line streaming, and sales (physical and digital). As the US are very influent regarding music tastes, the <i>Billboard</i> Hot 100 can be used as a good estimation of the worldwide music trends.
 		</p>
 		<p>
 			<i>Billboard</i> also provides year-end charts running from the first week of December to the final week in November. These rankings give an interesting overview of what happened during the year, who are the most dominant artists, which are the most remarkable songs of the year and so on. Therefore, by combining the year-end rankings it seems possible to analyze musical trends year by year, decade by decade and even on larger periods.
@@ -108,7 +108,12 @@ excerpt: "Whether one likes it or not, music is an art that does not let people 
 	</div>
 </div>
 <div class='row top-buffer'>
-	<div class='col-md-12 numberOfArtistsSelectorParent'>
+	<div class='col-md-4 col-sm-4'>
+		<div id='showRegressionLineCheckboxDiv'>
+			<input id='showRegressionLineCheckbox' type='checkbox' name='showRegressionLineCheckbox' value='hasRegressionLine'> Show Regression Line
+		</div>
+	</div>
+	<div class='col-md-8 numberOfArtistsSelectorParent'>
 		<div id='numberOfArtistsSelector' class='btn-group'>
 			<button type='button' class='btn btn-default' id='btn-10' data-val='10'>Top 10</button>
 			<button type='button' class='btn btn-default' id='btn-25' data-val='25'>Top 25</button>
@@ -175,20 +180,99 @@ excerpt: "Whether one likes it or not, music is an art that does not let people 
 			Visually we can observe a trend. It seems that the more years you spend in the charts, the more ranked tracks you have. This is quite logical. By displaying the 100 most represented artists in the <i>Billboard</i> Hot 100, we can also notice a kind of boundary located around 17 tracks ranked in the charts. Indeed, approximately 70 artists among the top 100 have 17 and less tracks ranked and only around 30 have more than 17 tracks in the <i>Billboard</i> charts.
 		</p>
 		<p>
-			To try to formalize this trend and identify which relation exists between the number of tracks and the number of years of presence in the charts, I have used a linear regression on the top 100 artists. The parameters of the linear regression have been estimated using <mark>scikit-learn</mark>.
+			To try to formalize this trend and identify which relation exists between the number of tracks and the number of years of presence in the charts, I have used a linear regression on the top 100 artists. You can display the regression line by checking the checkbox located on top left corner of the plot. The parameters of the linear regression have been estimated using <mark>scikit-learn</mark>. Here is the equation of the best linear fit that I have obtained: 
+			$$ \text{# of years of presence in Billboard Hot 100} = 3.32566998 + 0.31592062 \times  \text{# of tracks in Billboard Hot 100} $$
 		</p>
 		<p>
-			- Linear regression on the top 100 <br/>
-			- Speak about high longevity artists (Madonna, Mariah Carey, Elton John, Stevie Wonder) and also "hit machine" and raising top performers <br />
-			- Say that it seems that recent artists seem to be more represented
+			This line helps us to identify different categories of artists:
+			<ul>
+				<li>
+					 The high-longevity artists
+				</li>
+				<li>
+					The well-established artists
+				</li>
+				<li>
+					The very productive artists or hit-machines
+				</li>
+				<li>
+					The raising stars and high-potential artists
+				</li>
+			</ul>
+			Let's describe a bit more these categories.
+		</p>
+		<p>
+			The <strong>high-longevity artists</strong> are artists and bands located above the regression line. The higher above the line they are, the longer is their career. Some monuments of music history land in this category. This is for example the case of Madonna, Mariah Carey, Elton John, Stevie Wonder, The Rolling Stones... These artists have managed to cross the ages, remain successful and productive. They can be taken as career examples for young generations of singers.
+		</p>
+		<p>
+			The <strong>well-established artists</strong> category is made by singers and bands located around the regression line. This is where we find the highest number of artists. For instance we can quote Usher, Whitney Houston, Justin Timberlake, Alicia Keys, Britney Spears, George Michael or Marvin Gaye. These singers release or have released successful disks regularly for significant amount time. Not all the songs of their albums are big hits and they don't always produce a new disk every year but they have an important spot on the World musical scene.
+		</p>
+		<p>
+			The <strong>very productive artists or hit-machines</strong> category corresponds to the bottom right corner of the chart. This area is characterized by artists or bands having managed to have a very high number of tracks ranked in the <i>Billboard</i> Hot 100 in only a few years. This is the case of Rihanna, The Beatles, Drake, Ludacris, Lil Wayne and Chris Brown. Artists like Rihanna and Drake are part of the most popular singers right now and their career is not showing any signs of stopping. To maximize their success, they even have released a new song together at the beginning of 2016 (<a target='_blank' href='https://www.youtube.com/watch?v=HL1UzIK-flA'>Rihanna - Work ft. Drake</a>) which will probably be on the <i>Billboard</i> Hot 100 at the end of the year. On the other hand, The Beatles have separated a long time ago but during their short 10 years career (and only 8 years recording career) they produced a huge number of hits and became one of the most popular band of the music history. Theoretically, according to the regression model, in 8 years of career you should have 15 tracks ranked in the <i>Billboard</i> charts. The Beatles overshot this figure and have ranked 26 songs!
+		</p>
+		<p>
+			The <strong>raising stars and high-potential artists</strong> are the artists who have been successful for only a short period of time (seven years and less) and who have rank many tracks in the charts. This category is mainly located on the bottom left corner of the visualization. Artists like Bruno Mars, Nicki Minaj and Katy Perry can be considered as raising stars as they are becoming more and more popular and as they have been well represented in the <i>Billboard</i> rankings of the last three to five years. Lady Gaga, 50 Cent, The Notorious B.I.G and The Black Eyed Peas cannot be classified in the previous category but they can be grouped together in the high-potential artists bucket. For different reasons, those artists did not manage or choose to have a long career. Indeed, The Notorious B.I.G was murdered when he was at the top of his career. The Black Eyed Peas members decided to put the band aside to lead solo careers while the band was one of the world's best selling group of all time. 50 Cent and Lady Gaga, after being two of the most productive and successful artists in the world for five years, have become more discrete but they still have a high hit-potential if they want to come back. 
+		</p>
+		<p>
+			This simple analysis and regression has enabled us to have a first idea of who are the popular artists of the last 55 years and how we can categorized them. 
 		</p>
 	</div>
 </div>
+
+
+
 <div class='row'>
 	<div class='col-md-12'>
 		<h5>
 			Artist Familiarity / 'Hotttnesss' VS Artist Dominance
 		</h5>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			Knowing who are the most successful, productive and well-established artists of the last half-century is a good thing. But this does not really give us information about how dominant an artist is (was). Indeed, some singers or bands could have been very dominant for a short period of time and not appearing in the previous graph. For example, based on the comments done previously, The Beatles have probably been very dominant during the sixties.
+		</p>
+		<p>
+			First, let's define how I have chosen to quantify this dominance. For a given period of time we have:
+			$$\text{Artist Dominance} =  \frac{\text{# of tracks for a given artist in the given period}}{\text{total # of tracks during this given period}}$$
+			The number of tracks corresponds to the number of tracks in the <i>Billboard</i> Hot 100 year-end.
+		</p>
+		<p>
+			To evaluate the dominance of each artist, I have chosen to use rolling periods of three years. I think this is relevant and that it should capture enough information for the study. Once, this information has been collected I have identify what is the most dominant period for each artist.
+		</p>
+		<p> 
+			I was also very interested in combining this information with a measure of the current popularity of the singer or band because I think that being able to last over time and stay popular is also a form of dominance. Plus, I also consider that artists who are very popular right now kind of dominate the current music scene. That is why I though it could interesting features to visualize together.
+		</p>
+		<p>
+			The <mark>Echo Nest API</mark> offers an incredible catalog of music data including broad and deep data on millions of artists and songs. In particular, this API enables user to have access to the <strong>familiarity</strong> and the <strong>'hotttnesss'</strong> of a given artist. These two metrics are defined as follows <i>(source: <a target='_blank' href='http://4chanmusic.wikia.com/wiki/The_Echo_Nest'>http://4chanmusic.wikia.com/wiki/The_Echo_Nest</a>)</i>:
+			<ul>
+				<li>
+					<strong>Familiarity</strong> - A numerical estimation of how familiar an artist currently is to the world. 'Familiarity' corresponds to how well known in artist is. You can look at familiarity as the likelihood that any person selected at random will have heard of the artist. Beatles have a familiarity close to 1, while a band like ‘Hot Rod Shopping Cart’ has a familiarity close to zero. It can be described as well-knownness.
+
+				</li>
+				<li>
+					<strong>'Hotttnesss'</strong> – This corresponds to how much buzz the artist is getting right now. This is derived from many sources, including mentions on the web, mentions in music blogs, music reviews, play counts, etc.
+				</li>
+			</ul>
+			Both are calculated based upon total activity the EchoNest developers see for those artists on the thousands of web sites that they crawl.
+		</p>
+		<p>
+			Using the Python version of the API called <marked>Pyechonest</marked> (<a target='_blank' href='https://github.com/echonest/pyechonest'>https://github.com/echonest/pyechonest</a>), I have been able to collect the information about 'hotttnesss' and familiarity for all the singers and bands in my dataset. I have then chosen to visualize this information using an interactive scatter plot similar to the one I have used in the first part of the article. This time, the artist familiarity or 'hotttnesss' is represented on the x-axis and the artist dominance is given on the y-axis. Depending on what value you choose on the top right corner, you will display the <i>n</i> most dominant artists of the <i>Billboard</i> Hot 100 year-end. When two singers or bands have the same dominance, I have chosen to give an higher priority to the one with the greater number of years of presence in the top. The details about what is the three year period of dominance for a given artist are displayed in the artist's tooltip. 
+		</p>
+		<p>
+			This chart have the same functionalities as the previous one but it also has some additional ones:
+		</p>
+		<div class='well well-sm'>
+			<ul>
+				<li>
+					Using the buttons on the top left corner you can choose to visualize either the artist familiarity or the artist 'hotttnesss'.
+				</li>
+				<li>
+					The slider at the bottom of the graph is here to let adjust the time period which interests you. Therefore, you can only consider a particular decade. The artists who will be in the filtered dataset are the one who have their period of maximum dominance included in the filtered period.
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
 <div class='row top-buffer'>
@@ -265,7 +349,194 @@ excerpt: "Whether one likes it or not, music is an art that does not let people 
 		</div>
 	</div>
 </div>
+<div class='row top-buffer'>
+	<div class='col-md-12'>
+		<p>
+			For the whole period of study, it is quite surprising to see that the most dominant artist is T-Pain, who managed to rank 18 songs in the <i>Billboard</i> Hot 100 between 2006 and 2008 (included). That is very impressive. If we look to these songs a bit closer, we can notice that in addition of a prolific solo career, T-Pain has done several featurings with other really popular artists between 2006 and 2008. For example, we can quote the featuring on "Low" with Flo Rida which reached the first place of the <i>Billboard</i> Hot 100 in 2008.
+		</p>
+		<p>
+			Following T-Pain, it is less surprising to find Rihanna, The Beatles and Lil Wayne tie with a 5.33% dominance. Drake comes next. Thus, we find the very productive artists or hit-machines that we have identified in the previous section of the article.
+		</p>
+		<p>
+			Most of the high-longevity artists are ranked in 25 more dominant artists but their dominance is not as important as the dominance of The Beatles for instance. They have been more dominant over time with a constant dominance around 2% for more than 10 years in a row. The perfect illustration of this is Mariah Carey. Her highest dominance value is 3% and she reached this value three times in a row in: 1990-1992, 1992-1994, 1994-1996. Therefore, it is clear that she has largely dominated the beginning of the nineties.
+		</p>
+		<p>
+			If we look at the 50 most dominant artists, the majority of the other singers or bands classified in this chart stands in either the well-established artists or the raising stars and high-potential artists. This is in agreement with the definition of those categories. If we choose to display the 100 most dominant artists, we start seeing less well-known singers and bands or at least older artists which I think is very interesting. However, on the global period it is difficult to visualize 100 artists. That is why using the cursor to focus on particular periods of time is very useful.
+		</p>
+		<p>
+			If we isolate each decade, it seems that from 1960 to 2000 there were globally one or two very dominant artists by decade. They are often the symbol of the music of this period. The rest of the songs in the <i>Billboard</i> Hot 100 seems relatively fairly distributed. After 2000, the trend seems to change. Much more artists managed to have dominance greater than 3%. For instance, 21 artists have a dominance greater (or equal) than (to) 3% between 2000 and 2015. The diversity of the singers or bands ranked in the <i>Billboard</i> charts is decreasing as around 25 singers seem to produce the majority of the successful songs. I am tempted to say that this is probably linked to the raise of technology and especially the advent of the Internet. Indeed, it is easier for artists to get visibility all over the world. There is no limitation to one kind of music, everyone gets his chance and thus we don't have one artist dominating outrageously the others. However, as soon as you become powerful and have influence, all this technology, like social media for example, helps you to stay popular and to automatically increase the success of your next song or album. If we consider Rihanna for instance, with her amazing popularity and visibility on the media scene, it seems reasonable to say that a minimum of 3 tracks from her new album will probably be on the <i>Billboard</i> Hot 100 for 2016. And we can say that without listening the album, and without knowing if it is a good record. This album can be compare to a blockbuster in the cinema. Everyone is waiting for it, everyone wants to buy it, all the radio channels want to be the first to play it... Is it a good thing for music? It is hard to tell, it depends who you are. In any case, that is why we can explained the multiplication of relatively dominant artists after 2000.
+		</p>
+		<p>
+			The information about familiarity and 'hotttnesss' can be very helpful to support the previous vision.
+		</p>
+		<p>
+			Let's start with the 'hotttnesss'. If we look at the whole period, we are expecting to see the current artists 'hottter' than the one from the past. This can be verified graphically. Indeed, the 'hotttest' artists are Adele, Calvin Harris, Taylor Swift, Ed Sheeran, Drake, David Guetta and Ariana Grande. Rihanna, Katty Perry, Chris Brown and Bruno Mars are also not too far from the top spots. 
+		</p>
+		<p>
+			It is even more interesting to notice that artists like The Beatles manage to remain relatively 'hottt' even forty years after their separation. It is the same thing for Elvis Presley, who is even 'hottter' than The Beatles. Michael Jackson and The Notorious B.I.G keep a high 'hotttnesss' even several years after their death. Being able to stay popular through ages whatever happens is the key to become a monument of the music history. In addition to the previous names quoted in that paragraph, we can see that Elton John, Madonna, Mariah Carey and Stevie Wonder, the high-longevity artists, all have a 'hotttnesss' greater than 68%. The years go, but their music stays. 
+		</p>
+		<p>
+			T-Pain, who has been identified as the most dominant artist of the period and who is active since 2004, has a 'hotttnesss' equals to 61.13%. This is not bad, but we could have expected something higher. I am not convinced that T-Pain will still be part of the popular music scene in 10 years.
+		</p>
+		<p>
+			On a personal point of view, I was really surprised to see artists like The Carpenters being 'hottter' than Rihanna! I don't know how to explain that, but at least I will start listening to their music. Thanks to that chart I have also discovered Electric Light Orchestra. This band from the late seventies was quite dominant and remains very popular.
+		</p>
+		<p>
+			Now if we use the cursor at the bottom of the graph to narrow down the period of study to the last 10 years, the 'hotttnesss' can be used to try to have a better idea of who can be on the next <i>Billboard</i> rankings at the end of the year but also in the next few years. We already have talked about the 'hit-machines' like Rihanna and Drake. If you visualize 100 artists on the graph, I am more interested in the bottom right corner. That is to say, very 'hottt' artists who start to become dominant. I think in particular to Adele who is already a big star in Europe, Justin Bieber, Calvin Harris, Ellie Goulding, Ed Sheeran, One Direction and The Weeknd. They are all doing the buzz right now. I think that most of them will probably appear soon on the first graph shown in this study if they keep this rhythm. I am a bit more concern about One Direction, as it seems more difficult for Boys Band to stay popular over time.
+		</p>
+		<p>
+			On the other hand, we can also identify ailing artists. For instance, I think about T-Pain, Lil Wayne and Timbaland. It is not yet alarming for them, but I am not sure that the future will bright for them.
+		</p>
+		<p>
+			Let's now consider the familiarity. As previously defined this can be described as well-knownness. Intuitively, it seems reasonable to assume that the high-longevity artists and the very productive artists should have a very high familiarity. Indeed, the fact that almost everyone knows them helps them to stay popular. This is exactly what we can observe. All the artists in the previous categories have familiarity greater than 80%. The Beatles need a special mention as they are the most familiar band of all the dataset (of all time?) with a familiarity greater than 90%.
+		</p>
+		<p>
+			Following that, I think an interesting parallel with the growth-share matrix in brand marketing can be made with the different categories of artists that have been defined. I want to identify the high-longevity artists as the <i>cash cows</i> of <i>Billboard</i> Hot 100 charts. Since their familiarity is very high and their 'hotttnesss' also high, they are to be "milked" continuously with as little investment as possible (they don't require as much media exposure as the very productive artists and raising stars do). The 'hit-machine' category will be assimilated to the <i>stars</i>, who require lots of media support, who perform in a tough and fast-growing industry and represent an important relative market share (these artists are very dominant). When their career will start to slow down a bit (when they will be less 'hottt') the best ones will become new cash cows. The raising stars and high-potential artists can be identified as <i>question marks</i>. Indeed, they have a low market share in a high growth market. They have a good potential (high 'hotttnesss' and familiarity) and therefore they can become stars and then cash cows in the future if everything goes well for them. But nothing is granted so they need to be followed carefully. It is harder to really <i>dogs</i> in our case as the graph only includes popular artists. Maybe a link between singers who are slowing down (like T-Pain and Lil Wayne) and dogs can be made, but this has to be taken with a grain of salt.
+		</p>
+		<p>
+			If we select the same sub-period of ten years between 2005 and 2015 as we did for the 'hotttnesss', we realized that the 'hotttest' artists are not necessary the most familiar one. For example, if Adele and Justin are really well-known, that is less the case of The Weeknd or One Direction. This familiarity will probably come with time. For One Direction, we can argue that as a Boys Band their public is mostly made of teenagers and thus it will be more complicated for them to get a higher familiarity.
+		</p>
+		<p>
+			Another thing that I really like with the familiarity feature is the fact that you can use it to try to identify some forgotten musical gems. Indeed, by narrowing down the time period and going back in time it is possible to find dominant artists with a relatively low familiarity. I think this is great way of discovering new music. I had never heard about Brenda Lee, Hall & Oates, Bobby Rydell or Taylor Dayne for example. Obviously, it can also be used to discover artists that you don't know whatever their familiarity is.
+		</p>
+		<p>
+			At that point, a good analysis of the artists and their characteristics has been made. It is easier to understand who dominated the <i>Billboard</i> Hot 100 year-end in the last 55 years and how they stand today. Before starting to look at the songs, there is one last thing that I want to look at regarding the artists. In the introduction, I mentioned that the <i>Billboard</i> Hot 100 is the chart of reference in the USA for music. I want to know where the artists who are ranked in those charts are coming from. Are they only from North America? What is the place of European artists? Asian artists? Is the music industry really driven by the USA? Does the technology have an impact on where the artists come from? 
+		</p>
+	</div>
+</div>
 
+
+<div class='row'>
+	<div class='col-md-12'>
+		<h5>
+			Artist's Location
+		</h5>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			Using the <mark>Echo Nest API</mark> I have added for each song of the dataset the city of origin of the associated singer or band. The API gave me in particular the coordinates (latitude and longitude) of that city which is very useful in order to display them on a map.
+		</p>
+		<p>
+			To be able to see the evolution of the artist's location over time and the eventual impact of technology, I have chosen to create an interactive chart with custom functionalities:
+		</p>
+		<div class='well well-sm'>
+			<ul>
+				<li>
+					Each blue circle represents the city of origin of an artist whose one or several songs have been ranked in the <i>Billboard</i> charts. The bigger the radius is, the greater the number of songs is for that city. If you hover over a circle you will see a tooltip giving the name of the city, the name of the artist and the number of songs.
+				</li>
+				<li>
+					The map is a choropleth map. That means that the countries are shaded / colored in proportion of a statistical variable, here the number of songs for that country. The darker the country, the greater the number of songs.
+				</li>
+				<li>
+					You could zoom on the map by using the '+' and '-' buttons on the top left corner of the map or your mouse.
+				</li>
+				<li>
+					If you click on the 'Play' button next to the cursor at the bottom of the map, this will animate the chart and let you visualize year by year the location of each artist. Plus, as the years increase the map start to become more colorful because the number of songs for each country increases. <br/>
+					Alternatively, you can move the cursor manually to reach the year you are interested in.
+				</li>
+				<li>
+					The table below the map shows some important events in the music history. You can click on each row and this will automatically place the map at the related year letting you see you eventual impact of that event on the artist's location. 
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<div class='yearTitle'>
+			<h6></h6>
+		</div>
+	</div>
+</div>
+<div class='chart-container'>
+	<div class='row'>
+		<div class='col-md-1'>
+			<div class="btn-group-vertical">
+			  <button type="button" data-zoom="+1" class="btn btn-default btn-xs button-zoom"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+			  <button type="button" data-zoom="-1" class="btn btn-default btn-xs button-zoom"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+			</div>
+		</div>
+	</div>
+	<! -- Non data-driven elements -->
+	<svg id='chart3'>
+		<g class="map">
+			<g class="countries"></g>
+			<g class="cities"></g>
+		</g>
+	</svg>
+</div>
+
+<div id="slider"></div>
+<div class='row'>
+	<div class='col-md-12'>
+		<table class='table table-hover' id='importantDatesTable'>
+			<thead>
+				<tr>
+					<th>Event</th>
+					<th>Year</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-year="1981">
+					<td>MTV</td>
+					<td>1981</td>
+				</tr>
+				<tr data-year="2000">
+					<td>Internet Bubble</td>
+					<td>2000</td>
+				</tr>
+				<tr data-year="2003">
+					<td>iTunes Store</td>
+					<td>2003</td>
+				</tr>
+				<tr data-year="2005">
+					<td>YouTube</td>
+					<td>2005</td>
+				</tr>
+				<tr data-year="2008">
+					<td>Spotify</td>
+					<td>2008</td>
+				</tr>						
+			</tbody>
+		</table>
+	</div>
+</div>	
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			The conclusion is clear, with 4266 tracks ranked in the <i>Billboard</i> Hot 100 year-end in 55 years, the United States prevail over all other countries. Far behind, in second position, we find the Great-Britain with 738 tracks in the top. In third place, we are back to North America with Canada (160 songs). Australia comes fourth with 108 tracks. 
+		</p>
+		<p>
+		The other assessment that can be made is the fact that all the previously quoted countries are English spoken countries. It seems that there is no available spot in the <i>Billboard</i> Hot 100 for songs not in English. If I consider France for example. France has only 14 tracks ranked in the charts and 8 of them are associated with David Guetta who lives in US and uses mainly American or English speakers to perform the lyrics of his songs. Is it the sign that good music has to be sung in English? Even if it cannot be denied that the musicality of the language of Shakespeare is great and much better than the French or the German one, I don't think this is true. Musicality is one thing, but the quality of the lyrics, the depth of the texts, the emotion of the track and the melody can overcome that.
+		</p>
+		<p>
+			The <i>Billboard</i> chart is American and therefore it reflects the taste of American people and also what are the tracks that are easily available to them. Based on this visualization, it seems difficult for foreign music and especially non English speaking music to become popular and successful in the States. Technology and Internet with Spotify or Youtube, enable more and more people to have access to a very wide catalog of music. But it also helps music from North America to spread all over the world and to remain the reference on the planet. Indeed, in Europe for instance, almost all the top 100 artists displayed on the first and second plots are superstars and are very well broadcast on radio and television.
+		</p>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			This concludes the first part of the study which was mainly focused on discovering the dataset and especially the artists and their characteristics. Thereafter, the analysis will be more dedicated to the songs and their properties.
+		</p>
+	</div>
+</div>
+
+
+
+<script src="{{site.basurl}}/public/scripts/jquery-2.1.4.min.js"></script>
+<script src="{{site.basurl}}/public/scripts/d3.min.js"></script>
+<script src="{{site.basurl}}/public/scripts/d3-tip.js"></script>
+<script src="{{site.basurl}}/public/scripts/spotify-web-api.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.13/bootstrap-slider.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://cdn.rawgit.com/tmcw-up-for-adoption/chroniton/gh-pages/chroniton-only.js"></script>
+<script src="{{site.basurl}}/public/scripts/count.js"></script>
+<script src="{{site.basurl}}/public/scripts/dominance.js"></script>
+<script src="{{site.basurl}}/public/scripts/location.js"></script>
 
 
 

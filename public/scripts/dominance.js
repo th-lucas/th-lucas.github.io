@@ -4,7 +4,7 @@
 
  // Populates the dataset2 from a CSV file and creates the chart
  function createChart2(){
- 	var nbOfArtists = d3.select('#numberOfArtistsSelector')
+ 	var nbOfArtists = d3.select('#numberOfArtistsSelector2')
 						.selectAll('.active')
 						.attr('data-val');
 
@@ -16,7 +16,8 @@
 	setXValues2(valueToDisplay2);
 
  	// Populates the dataset2 from a CSV file and creates
-	d3.csv('/public/csv/billboard_data.csv', function(error, data) {
+ 	var dsv = d3.dsv(";", "text/plain");
+	dsv('/public/csv/billboard_df-artist_count.csv', function(error, data) {
 		if(error){ 
 			throw error;
 		}
