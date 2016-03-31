@@ -5,6 +5,12 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
 
+  {% if site.author.avatar %}
+  <div class="sidebar-logo" style="align:center">  
+      <img src="{{ site.baseurl }}/public/images/{{ site.author.avatar }}" />
+  </div>
+  {% endif %}
+
   <div id="contact-list" style="text-align:center">
       {% if site.author.github %}
         <a target='_blank' href="https://github.com/{{ site.author.github }}">
