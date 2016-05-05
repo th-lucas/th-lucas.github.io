@@ -22,6 +22,11 @@
     margin: 0 auto;
 }
 
+.quandrants {
+  width: 70%;
+  margin-left: 15%;
+}
+
 #chart, #chart2 {
   background-color: #f7f7f9; 
   width: 95%;

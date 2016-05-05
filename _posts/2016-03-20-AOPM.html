@@ -528,7 +528,286 @@ tags: [dataScience, music, github, code]
 		</p>
 	</div>
 </div>
-
+<div class='row'>
+	<div class='col-md-12'>
+		<h3>
+			Study of the acoustic attributes of the tracks
+		</h3>
+	</div>
+	<div class='col-md-12'>
+		<p>
+			Using the <mark>Echo Nest API</mark> I was able to collect lots of information about each song of the <i>Billboard</i> Hot 100. These attributes describe the track’s structure and musical content, including rhythm, pitch, and timbre. Using this data, it is possible to try to understand how people hear and perceive music.
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h5>
+			Valence
+		</h5>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			The first attribute that I have decided to study is the <strong>valence</strong> of the tracks. This term comes from psychology. According to the <mark>Echo Nest API</mark> documentation, the valence of a song can be defined as follows:
+		</p>
+		<blockquote>
+		  	<p>Describes the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g., happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). Note that in the case of vocal music, lyrics may differ semantically from the perceived acoustic mood.</p>
+		  	<footer>Valence definition from <cite title="Valence Definition">http://developer.echonest.com/acoustic-attributes.html</cite></footer>
+		</blockquote>
+		<p>
+			The valence ranges from 0.0 to 1.0. Therefore, a value close to one indicates a positive emotion, while a value close to zero is a negative emotion.
+		</p>
+		<p>
+			My first intuition about this attribute was that the majority of the tracks ranked in the <i>Billboard</i> charts conveys a positive emotion, sounds positive or happy. In other terms, I was first interested in testing the hypothesis that the the average valence of all the songs in my dataset is <strong>greater than 0.5</strong>.
+		</p>
+		<p>
+			To begin with, I have isolated the valence data for all the tracks and plotted an histogram of the valence distribution.
+		</p>
+		<p>
+			<img src="{{site.basurl}}/public/images/valence_histogram.png" class="img-responsive" alt="Valence Histogram">
+		</p>
+		<p>
+			The distribution does not seem to be normal. We observe a plateau for 0.6 <= valence <= 0.9. The population presents less variance than a normal distribution. To illustrate those words, I have used a probability plot:
+		</p>
+		<p>
+			<img src="{{site.basurl}}/public/images/valence_QQ_plot.png" class="img-responsive" alt="Valence QQ-plot">
+		</p>
+		<p>
+			This S shaped-curve indicates shorter than normal tails, i.e. less variance than expected. This confirms that the valence of the tracks is not normally distributed and seems to mainly take values greater than 0.5.
+		</p>
+		<p>
+			To formalize these observations, I have use the Pandas ‘describe’ command. As I have access to the full population, there is no need to do a hypothesis testing to test if the dataset mean is equal to 0.5. Here are the obtained results:
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<table class='table table-hover'>
+			<tbody>
+				<tr>
+					<th>Count</th>
+					<td>5608</td>
+				</tr>
+				<tr>
+					<th>Mean</th>
+					<td>0.603195</td>
+				</tr>
+				<tr>
+					<th>Standard Deviation</th>
+					<td>0.237206</td>
+				</tr>
+				<tr>
+					<th>Minimum</th>
+					<td>0.000000</td>
+				</tr>
+				<tr>
+					<th>25%</th>
+					<td>0.413064</td>
+				</tr>
+				<tr>
+					<th>50%</th>
+					<td>0.624989</td>
+				</tr>
+				<tr>
+					<th>75%</th>
+					<td>0.803726</td>
+				</tr>	
+				<tr>
+					<th>Maximum</th>
+					<td>0.994769</td>
+				</tr>					
+			</tbody>
+		</table>
+	</div>
+</div>	
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			We have a mean value of approximatively <strong>0.6</strong> for the valence. Plus, as the median is equal to 0.625, there are as many tracks having a valence included between 0 and 0.625 and tracks having a valence included between 0.625 and 1. This means that globally the songs of the <i>Billboard</i> Hot 100 sound positive. This confirms my first hypothesis.
+		</p>
+		<p>
+			We have found a global trend but is it the same thing for each decade? Indeed, it is clear that the musical taste of people has evolved over time, and that the global world situation has an impact on the musical message spread by the <i>Billboard</i> tracks.
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h6>
+			Valence by decade
+		</h6>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			This time I have depicted the distribution of the valence for the <i>Billboard</i> songs decade by decade. This will be helpful in order to try to spot differences and changes over time.
+		</p>
+		<p>
+			<img src="{{site.basurl}}/public/images/valence_by_decade.png" class="img-responsive" alt="Valence by Decade">
+		</p>
+		<p>
+			According to the previous series of histograms, it seems that the distribution of the valence is changing over the time, even if the mean and the median of the population do not change a lot. The results are quite interesting.
+		</p>
+		<p>
+			Between the sixties and the eighties it looks like the high majority of the songs sounds very positive and happy. This is especially true between 1960 and 1979 where both histograms show frequency peaks for valence data close to 1. We do not see the ‘plateau’ phenomenon that appears on the histogram of the full dataset. The sixties were characterized by the influence of the hippie and psychedelic cultures and the advent of rock and roll music. We can for example quote the psychedelic rock and the surf rock as two popular branches of rock and roll in the sixties with artists like Jimi Hendrix, The Doors, The Beach Boys and The Beatles. The seventies saw the rise of disco. Funk, R&B and urban music also became very popular during the 1970s. Stevie Wonder, Lionel Richie and The Jackson 5 were among the biggest music stars of this decade. Based on this short summary, it seems that the musical culture of the 1960s and the 1970s is consistent with the positivity and happiness observed in the songs of this period.
+		</p>
+		<p>
+			The 1980s and the 1990s are two interesting decades which can be considered as transition periods. Indeed, lots of musical changes happened at this time. The eighties have been marked by the end of the disco era, the emergence of the dance music and new-wave, the premises of the golden-age of hip hop, electro, techno and house music and a still widely listened and diversified rock and roll. In addition, this period is also commonly remembered for an increase in the use of digital recording, associated with the usage of synthesizers, and other electronic non-traditional instruments. It is also interesting to quote that MTV has been created in 1981 entailing a new way of listening to music and also a new music perception through video clips. All this changes have an impact on the distribution of the valence. Even if the majority of tracks still sounds positive and happy, the trend seems to flatten and to look a bit more uniform. This became even more obvious in the nineties where we observe for the first time an important density of tracks with a relatively low variance (< 0.4). Positive and negative sounding tracks are almost balancing each other out. The 1990s saw the continuation of teen pop and dance-pop trends. Hip hop was also very successful in this decade. Using its growing popularity from the 80s, electronic music became a major music genre in the nineties. Nevertheless, it seems difficult to gauge the lasting impact of 1990s music in popular culture. For example, a 2010 European survey conducted by the digital broadcaster <i>Music Choice</i>, interviewing over 11,000 participants, rated the 1990s as the second best tune decade in the last 50 years, while participants of an American land line survey rated the 1990s quite low, with only 8% declaring it as best decade in music. That is also a reason why this decade can also be considered as a transition period.
+		</p>
+		<p>
+			Finally, the last two decades present a very different valence distribution. There is no more plateau, and the distribution seems to become closer to a normal distribution with a mean located between 0.5 and 0.55. This is particularly the case for the 2010s. The 2000s did not see the creation or emergence of many styles. It has been more a decade where lots of different musical genres coexisted giving birth to some fusions (for example fusion between hip hop and electronic dance). The popularity of rock and roll started to decline in the charts at the end of the decade while hip hop and electronic music were dominating. We also find this idea of multiple musical genres from 2010 to today. Indeed, even if nowadays the electronic and hip hop music are still dominating, we see the come back of traditional instruments, saxophone, rock and roll and teen pop with artists like One Direction or Justin Bieber. For both decades, the rise of the Internet and all its new ways of accessing and listening to music can explain this multiplication and cohabitation of various musical styles from different origins. I guess this can explain the bigger diversity in the valence of the <i>Billboard</i> tracks. Songs do not necessarily have to sound happy and positive to be successful. 
+		</p>
+		<p>
+			The study of the valence is very interesting in order to understand how sound the tracks of the <i>Billboard</i> Hot 100 and how these songs can be perceived by people. It is possible to combine the valence of the song with the <strong>energy</strong> of that particular song to obtain a strong indicator of <strong>acoustic mood</strong>, the general emotional qualities that may characterize the track's acoustics. Before combining these two attributes, let's have a quick look at the energy of the tracks.
+		</p>
+	</div>	
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h5>
+			Energy
+		</h5>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			To be able to study the acoustic mood of the songs, I have to consider the <strong>energy</strong> of the tracks. According to the <mark>Echo Nest API</mark> documentation, the energy of a song can be defined as follows:
+		</p>
+		<blockquote>
+		  	<p>Represents a perceptual measure of intensity and powerful activity released throughout the track. Typical energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p>
+		  	<footer>Energy definition from <cite title="Valence Definition">http://developer.echonest.com/acoustic-attributes.html</cite></footer>
+		</blockquote>
+		<p>
+			The energy ranges from 0.0 to 1.0. To continue with the previous example, death metal will have an energy value close to 1 while a Bach prelude will see its energy being close to 0.
+		</p>
+		<p>
+			My first intuition about this attribute was that the majority of the tracks ranked in the <i>Billboard</i> charts are dynamic and energetic. In other terms, I was first interested in testing the hypothesis that the the average energy of all the songs in my dataset is <strong>greater than 0.5</strong>.
+		</p>
+		<p>
+			I have conducted the same analysis than the one done for the valence. First, I have isolated the energy data for all the tracks and plotted an histogram of the energy distribution.
+		</p>
+		<p>
+			<img src="{{site.basurl}}/public/images/energy_histogram.png" class="img-responsive" alt="Energy Histogram">
+		</p>
+		<p>
+			As it was the case for the valence, the energy is not normally distributed. The population presents less variance than a normal distribution. To illustrate those words, I have used a probability plot:
+		</p>
+		<p>
+			<img src="{{site.basurl}}/public/images/energy_QQ_plot.png" class="img-responsive" alt="Energy QQ-plot">
+		</p>
+		<p>
+			The conclusion regarding the distribution of the energy feature on the global data is similar to the one made for the valence. The distribution is not normal, we have a short tail distribution. This confirms that the energy of the tracks seems to mainly take values greater than 0.5.
+		</p>
+		<p>
+			To formalize these observations, I have use the Pandas ‘describe’ command. As I have access to the full population, there is no need to do a hypothesis testing to test if the dataset mean is equal to 0.5. Here are the obtained results:
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<table class='table table-hover'>
+			<tbody>
+				<tr>
+					<th>Count</th>
+					<td>5609</td>
+				</tr>
+				<tr>
+					<th>Mean</th>
+					<td>0.596539</td>
+				</tr>
+				<tr>
+					<th>Standard Deviation</th>
+					<td>0.212346</td>
+				</tr>
+				<tr>
+					<th>Minimum</th>
+					<td>0.000020</td>
+				</tr>
+				<tr>
+					<th>25%</th>
+					<td>0.438360</td>
+				</tr>
+				<tr>
+					<th>50%</th>
+					<td>0.601786</td>
+				</tr>
+				<tr>
+					<th>75%</th>
+					<td>0.769029</td>
+				</tr>	
+				<tr>
+					<th>Maximum</th>
+					<td>0.998143</td>
+				</tr>					
+			</tbody>
+		</table>
+	</div>
+</div>	
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			We have a mean value of approximatively <strong>0.6</strong> for the energy. Plus, as the median is equal to 0.6, there are as many tracks having an energy included between 0 and 0.6 and tracks having an energy included between 0.6 and 1. This means that globally the songs of the <i>Billboard</i> Hot 100 are dynamic and energetic. This confirms my first hypothesis.
+		</p>
+		<p>
+			Motivated by the interesting results that I got for the valence, I will now consider the energy of the tracks decade by decade. Indeed, using what we have describe about the different musical genres of each decade it seems reasonable to think that the energy of the songs has evolved over time.
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h6>
+			Energy by decade
+		</h6>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			This time I have depicted the distribution of the energy for the <i>Billboard</i> songs decade by decade. Using the comments made for the valence, we will try to spot differences and changes over time.
+		</p>
+		<p>
+			<img src="{{site.basurl}}/public/images/energy_by_decade.png" class="img-responsive" alt="Energy by Decade">
+		</p>
+		<p>
+			Similarly to what we have noticed for the valence, it seems that the distribution of the energy is changing over the time, even if the mean and the median of the population do not change a lot. The results are quite interesting. It is also possible to spot that the distributions are changing in the opposite direction compare to the valence histograms. That is to say that we observe almost normally distributed data for the 1960s and 1970s and then the distributions become more and more asymmetric. So, even if we have seen that music became more and more diversified, it seems that the most recent popular songs tend to be highly energetic.
+		</p>
+		<p>
+			According to what has been described for the valence, the energy distribution for the 1960s makes perfect sense. The motto of the hippies was "Peace and Love", this can also be found in the music of this period which sounds relatively quiet. 
+		</p>
+		<p>
+			The average energy of the tracks slightly increases in the seventies. I think that this can probably be explained by the dynamic disco and funk songs and also by the emergence of hard rock with bands like Led Zeppelin and AC/DC.
+		</p>
+		<p>
+			The energy distributions for the transition decades (the 80s and the 90s) are more difficult to interpret. In the eighties, hard rock and heavy metal (Metallica, Iron Maiden, Slayer) are very popular and obviously very dynamic. R&B and the "young" hip hop are also popular but less dynamic and energetic. Indeed, in the 1980s the creation of rhythm in hip hop was often using the human body via beatboxing techniques. Those techniques are impressive but they cannot generate and release the same energy as the electric guitars of heavy metal. The nineties present an average level of energy. Rock and roll and the new grunge music with bands like Nirvana can explain the high energy component of the nineties. I though that the rise of the electronic music combined with the very popular rock will have given an asymmetric distribution for the 90s, or at least something with higher frequencies for energy > 0.5. The R&B and urban music, also very trendy at this period, are probably compensating. For instance, artists like Mariah Carey do not probably have a lot of highly energetic songs.
+		</p>
+		<p>
+			Finally, for the 2000s and the 2010s, the energy distribution suggests that these periods are much more dynamic. The tremendous success of electronic music and lively pop music can be used to explained this trend. I think that most popular songs currently produce are dynamic and energetic because they have to be an invitation to dance. Also, the life in the 21st century is in general more dynamic and takes place at a fast pace. This can be perceived in the popular music.
+		</p>
+		<p>
+			Now that the valence and energy attributes have been described it will be interesting to combine them to have a look at the <strong>acoustic mood</strong> of the <i>Billboard</i> tracks. 
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h5>
+			Acoustic Mood
+		</h5>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			In emotion classification, valence is often combined with energy to yield a four quadrant mood: high energy/high valence, high energy/low valence, low energy/high valence, and low energy/low valence. This model has been developed by James Russell and is called the <strong>circumplex model of emotion</strong>. These four quadrants are shown below:
+		</p>
+		<p>
+			<img class='quandrants' src="{{site.basurl}}/public/images/valence_energy_quandrants.jpg" class="img-responsive" alt="Valence / Energy quandrants">
+		</p>
+	</div>
+</div>
 
 
 <script src="{{site.basurl}}/public/scripts/jquery-2.1.4.min.js"></script>
