@@ -23,11 +23,11 @@
 }
 
 .quandrants {
-  width: 70%;
-  margin-left: 15%;
+  width: 60%;
+  margin-left: 20%;
 }
 
-#chart, #chart2 {
+#chart, #chart2, #chart4 {
   background-color: #f7f7f9; 
   width: 95%;
   height: 95%;
@@ -183,7 +183,7 @@ table#importantDatesTable tbody tr:hover {
 
 /* Audio player */
 
-td audio {
+audio {
   display: none !important;
 }
 
@@ -281,3 +281,265 @@ div.slider.slider-horizontal {
   z-index: 10;
   margin-left: 50px;
 }
+
+/*** Chart 4: Acoustic Mood ***/
+
+#chart4 {
+  background-color: transparent; 
+}
+
+div.decadeSelectorParent {
+  text-align: center;
+  position: inherit;
+  transform: inherit;
+  margin-top: 20px;
+}
+
+
+#decadeSelector .btn {
+  width: 65px;
+}
+
+#chart4 circle:hover {
+  cursor: default;
+}
+
+#chart4 circle.tracksToDisplay:hover {
+  cursor: pointer;
+}
+
+circle._60s {
+  fill: rgba(31, 119, 180, 0.5);
+}
+
+circle._70s {
+  fill: rgba(255, 127, 14, 0.5);
+}
+
+circle._80s {
+  fill: rgba(44, 160, 44, 0.5);
+}
+
+circle._90s {
+  fill: rgba(214, 39, 40, 0.5);
+}
+
+circle._00s {
+  fill: rgba(148, 103, 189, 0.5);
+}
+
+circle._10s {
+  fill: rgba(140, 86, 75, 0.5);
+}
+
+line.all {
+  stroke: rgba(101, 109, 120, 0.8);
+}
+
+line._60s {
+  stroke: rgba(31, 119, 180, 0.8);
+}
+
+line._70s {
+  stroke: rgba(255, 127, 14, 0.8);
+}
+
+line._80s {
+  stroke: rgba(44, 160, 44, 0.8);
+}
+
+line._90s {
+  stroke: rgba(214, 39, 40, 0.8);
+}
+
+line._00s {
+  stroke: rgba(148, 103, 189, 0.8);
+}
+
+line._10s {
+  stroke: rgba(140, 86, 75, 0.8);
+}
+
+label.btn-60s, label.btn-60s.active_bis{ 
+  font-family: 'Font60s';
+  background-color: rgba(31, 119, 180, 0.5);
+}
+
+label.btn-70s, label.btn-70s.active_bis {
+  font-family: 'Font70s';
+  background-color: rgba(255, 127, 14, 0.5);
+}
+
+label.btn-80s, label.btn-80s.active_bis {
+  font-family: 'Font80s';
+  background-color: rgba(44, 160, 44, 0.5);
+}
+
+label.btn-90s, label.btn-90s.active_bis {
+  font-family: 'Font90s';
+  background-color: rgba(214, 39, 40, 0.5);
+}
+
+label.btn-00s, label.btn-00s.active_bis {
+  font-family: 'Font00s';
+  background-color: rgba(148, 103, 189, 0.5);
+}
+
+label.btn-10s, label.btn-10s.active_bis {
+  font-family: 'Font10s';
+  background-color: rgba(140, 86, 75, 0.5);
+}
+
+label.inactive {
+  background-color: rgb(236,240,241);
+  color: lightgray;
+}
+
+/* Representative Artists */
+
+#the-beatles {
+  background-image: url(http://img2-ak.lst.fm/i/u/c33a564f81fc478db125bf08914a4585.png);
+}
+
+#stevie-wonder {
+  background-image: url(http://img2-ak.lst.fm/i/u/cee3aeee325113a675c12ba386c2fb44.png);
+}
+
+#michael-jackson {
+  background-image: url(http://img2-ak.lst.fm/i/u/82e02ad3303a4810ad3f6e1cfff9a14a.png);
+}
+
+#mariah-carey {
+  background-image: url(http://img2-ak.lst.fm/i/u/61ca3abeab76743c4d6a3d7798c39022.png);
+}
+
+#eminem {
+  background-image: url(http://img2-ak.lst.fm/i/u/a7246852f05343f4a127d648895a8873.png);
+}
+
+#rihanna {
+  background-image: url(http://img2-ak.lst.fm/i/u/d5db38e344da1e3405d9dba5cebb6171.png);
+}
+
+.img-col {
+  margin-right: 20px;
+  width: 57px;
+  text-align: center;
+  font-size: large;
+}
+
+.grey-scale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+  filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/s….3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+  opacity: .7;
+}
+
+.active-artist, .grey-scale.active-artist {
+  filter: none; /* works for firefox */
+  -webkit-filter: none; /*for chrome/ safari */
+  -webkit-transition: none;
+  opacity: 1;
+}
+
+.band-img {
+    height: 57px;
+    width: 57px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-size: 57px 57px;
+}
+
+.tk-futura-pt {
+    font-family: "futura-pt",sans-serif;
+}
+
+.band-text {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+    opacity: .8;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.decade-col{
+    width: 57px;
+    margin-right: 20px;
+    height: 100px;
+    margin-top: 5px;
+    font-size: xx-large;
+}
+
+@font-face {
+    font-family: 'Font60s'; /*a name to be used later*/
+    src: url('/public/fonts/60s/victor-moscoso.regular.ttf'); /*URL to font*/
+}
+
+p._60s-label {
+  font-family: 'Font60s';
+  color: rgba(31, 119, 180, 0.5);
+}
+
+@font-face {
+    font-family: 'Font70s'; /*a name to be used later*/
+    src: url('/public/fonts/70s/monoton.regular.ttf'); /*URL to font*/
+}
+
+p._70s-label {
+  font-family: 'Font70s';
+  color: rgba(255, 127, 14, 0.5);
+}
+
+@font-face {
+    font-family: 'Font80s'; /*a name to be used later*/
+    src: url('/public/fonts/80s/videophreak.regular.ttf'); /*URL to font*/
+}
+
+p._80s-label {
+  font-family: 'Font80s';
+  color: rgba(44, 160, 44, 0.5);
+}
+
+@font-face {
+    font-family: 'Font90s'; /*a name to be used later*/
+    src: url('/public/fonts/90s/sans-culottes.regular.ttf'); /*URL to font*/
+}
+
+p._90s-label {
+  font-family: 'Font90s';
+  color: rgba(214, 39, 40, 0.5);
+}
+
+@font-face {
+    font-family: 'Font00s'; /*a name to be used later*/
+    src: url('/public/fonts/00s/neuropol_x_rg.ttf'); /*URL to font*/
+}
+
+p._00s-label {
+  font-family: 'Font00s';
+  color: rgba(148, 103, 189, 0.5);
+}
+
+@font-face {
+    font-family: 'Font10s'; /*a name to be used later*/
+    src: url('/public/fonts/10s/hemi_head_bd_it.ttf'); /*URL to font*/
+}
+
+p._10s-label {
+  font-family: 'Font10s';
+  color: rgba(140, 86, 75, 0.5);
+}
+
+.control.glyphicon {
+  position: static;
+  font-size: x-large;
+  margin-left: 4px;
+  margin-top: 4px;
+}
+
+

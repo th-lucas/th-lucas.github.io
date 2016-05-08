@@ -806,6 +806,115 @@ tags: [dataScience, music, github, code]
 		<p>
 			<img class='quandrants' src="{{site.basurl}}/public/images/valence_energy_quandrants.jpg" class="img-responsive" alt="Valence / Energy quandrants">
 		</p>
+		<p>
+			To analyze the acoustic mood of the <i>Billboard</i> Hot 100 tracks, I have decided to also use a four quadrant plot. If my previous hypothesis are correct, the <strong>majority of the songs should be located on the top right quadrant</strong> (valence > 0.5 and energy > 0.5). I have chosen to use an interactive scatter plot with custom functionalities to display this data.
+		</p>
+		<div class='well well-sm'>
+			<ul>
+				<li>
+					By default, the scatter plot shows all the data points of the dataset i.e. the tracks which have a valence and an energy not null. Each decade has its own color. I have chosen the same colors as the ones used for the histograms.
+				</li>
+				<li>
+					The vertical and horizontal lines plotted on the graph represent the mean value of the valence (for the vertical line) and the mean value of the energy (for the horizontal line). The idea behind those lines is to see how the data is distributed compared to the theoretical quadrants.
+				</li>
+				<li>
+					It possible to filter the tracks by decade to have a clearer view using the buttons on the top right corner of the graph. Decades can be combined by clicking on several buttons.
+				</li>
+				<li>
+					On the left side of the graph, I have selected some representative artists for each decade. They are very famous singers and bands who had a very strong impact on the music of their respective period. By clicking on the artists picture, it is possible to isolate the songs of the selected artist.
+				</li>
+				<li>
+					Once an artist has been selected, it is possible to hover over the circles to have the details of the track. If you click on one of these circles, it will play a preview of the track (30 seconds).
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class='row top-buffer'>
+	<div class='col-md-2 col-sm-2 col-xs-2'>
+		<div class='img-col'>
+			<p class="_60s-label">60s</p>
+			<div id='the-beatles' class='band-img the-beatles grey-scale'></div>
+			<p class="band-text tk-futura-pt the-beatles">The Beatles</p>
+		</div>
+	</div>
+	<div class='col-md-2 col-sm-2 col-xs-2'>
+		<div class='img-col'>
+			<p class="_70s-label">70s</p>
+			<div id='stevie-wonder' class='band-img stevie-wonder grey-scale'></div>
+			<p class="band-text tk-futura-pt stevie-wonder">Stevie Wonder</p>
+		</div>
+	</div>
+	<div class='col-md-2 col-sm-2 col-xs-2'>
+		<div class='img-col'>
+			<p class="_80s-label">80s</p>
+			<div id='michael-jackson' class='band-img michael-jackson grey-scale'></div>
+			<p class="band-text tk-futura-pt michael-jackson">Michael Jackson</p>
+		</div>
+	</div>
+	<div class='col-md-2 col-sm-2 col-xs-2'>
+		<div class='img-col'>
+			<p class="_90s-label">90s</p>
+			<div id='mariah-carey' class='band-img mariah-carey grey-scale'></div>
+			<p class="band-text tk-futura-pt mariah-carey">Mariah Carey</p>
+		</div>
+	</div>
+	<div class='col-md-2 col-sm-2 col-xs-2'>
+		<div class='img-col'>
+			<p class="_00s-label">00s</p>
+			<div id='eminem' class='band-img eminem grey-scale'></div>
+			<p class="band-text tk-futura-pt eminem">Eminem</p>
+		</div>
+	</div>
+	<div class='col-md-2 col-sm-2 col-xs-2'>
+		<div class='img-col'>
+			<p class="_10s-label">10s</p>
+			<div id='rihanna' class='band-img rihanna grey-scale'></div>
+			<p class="band-text tk-futura-pt rihanna">Rihanna</p>
+		</div>
+	</div>
+	<div class='col-md-12 col-sm-12 col-xs-12 decadeSelectorParent'>
+		<div id='decadeSelector' class='btn-group' data-toggle="buttons">
+			<label class="btn btn-default btn-all active">
+    			<input type="checkbox" name="decadeSelectorButton" disabled="disabled" id="btn-all" value="all">All
+			</label>
+			<label class="btn btn-default btn-60s">
+    			<input type="checkbox" name="decadeSelectorButton" disabled="disabled" id="btn-60s" value="_60s">60s
+			</label>
+			<label class="btn btn-default btn-70s">
+    			<input type="checkbox" name="decadeSelectorButton" disabled="disabled" id="btn-70s" value="_70s">70s
+			</label>
+			<label class="btn btn-default btn-80s">
+    			<input type="checkbox" name="decadeSelectorButton" disabled="disabled" id="btn-80s" value="_80s">80s
+			</label>
+			<label class="btn btn-default btn-90s">
+    			<input type="checkbox" name="decadeSelectorButton" disabled="disabled" id="btn-90s" value="_90s">90s
+			</label>
+			<label class="btn btn-default btn-00s">
+    			<input type="checkbox" name="decadeSelectorButton" disabled="disabled" id="btn-00s" value="_00s">00s
+			</label>
+			<label class="btn btn-default btn-10s">
+    			<input type="checkbox" name="decadeSelectorButton" disabled="disabled" id="btn-10s" value="_10s">10s
+			</label>
+		</div>
+	</div>
+</div>
+<div class='chart-container'>
+	<! -- Non data-driven elements -->
+	<svg id='chart4'>
+		<g id='chart-wrapper4' class='chart-wrapper'>
+			<g class='x axis'> </g>
+			<g class='y axis'> </g>
+			<g class='grids'></g>
+			<g class='circles'></g>
+			<g class='averageLines'></g>
+		</g>
+	</svg>
+	<div class='audio-player-div'>
+		<audio controls id='audio-player'>
+			<source class='mpeg' src='' type='audio/mpeg'>
+			<source src='' type='audio/ogg'>
+		</audio>
 	</div>
 </div>
 
@@ -820,6 +929,7 @@ tags: [dataScience, music, github, code]
 <script src="{{site.basurl}}/public/scripts/count.js"></script>
 <script src="{{site.basurl}}/public/scripts/dominance.js"></script>
 <script src="{{site.basurl}}/public/scripts/location.js"></script>
+<script src="{{site.basurl}}/public/scripts/mood.js"></script>
 
 
 
