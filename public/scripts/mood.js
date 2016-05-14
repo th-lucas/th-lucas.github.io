@@ -357,10 +357,7 @@ function resize4() {
     var width4 = parseInt(d3.select('#chart4').style('width')) - margin4.left - margin4.right,
     	height4 = parseInt(d3.select('#chart4').style('height')) - margin4.top - margin4.bottom;
 
-    if(((width4 + margin4.left + margin4.right) >= 1500) && ((height4 + margin4.top + margin4.bottom) >= 700)){
-		radius4 = radiusValues['Big'];
-		hoveredRadius4 = hoveredRadiusValues4['Big'];
-	} else if (((width4 + margin4.left + margin4.right) <= 500) && ((height4 + margin4.top + margin4.bottom) <= 400)){
+    if (((width4 + margin4.left + margin4.right) <= 500) && ((height4 + margin4.top + margin4.bottom) <= 400)){
 		radius4 = radiusValues4['Small'];
 		hoveredRadius4 = hoveredRadiusValues4['Small'];
 	} 
@@ -494,9 +491,6 @@ else {
 	radius4 = radiusValues4['Medium'];
 	hoveredRadius4 = hoveredRadiusValues4['Medium'];
 } 
-
-
-//var jitter = 10;
 
 // Scales
 var xScale4 = null;
