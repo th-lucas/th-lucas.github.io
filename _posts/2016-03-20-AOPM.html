@@ -2,14 +2,23 @@
 permalink: analysisOfPopularMusic
 layout: post
 title:  "The Popular Music over the last 55 years"
-date:   2016-03-29 22:00:00 +0000
+date:   2016-05-24 00:00:00 +0000
 categories: jekyll update
 excerpt: "Whether one likes it or not, music is an art that does not let people indifferent. At a time when listening to music has never been easier, I felt interesting to have a closer look at what are the characteristics of popular music and popular artists over the last half-century."
 comments: true
 disqus_identifier: 6FEAA2F2-A1A1-43D1-9EEC-33DB355FD6D6
-tags: [dataScience, music, github, code]
+tags: [dataScience, music, github, code, billboard]
 ---
 
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			<small class='italicNote'>
+				The code of this project can be found on my <a target='_blank' href='https://github.com/th-lucas/AOPM'>GitHub account</a>.
+			</small>
+		</p>
+	</div>
+</div>
 <div class='row'>
 	<div class='col-md-12'>
 		<p>
@@ -513,7 +522,7 @@ tags: [dataScience, music, github, code]
 			The conclusion is clear, with 4266 tracks ranked in the <i>Billboard</i> Hot 100 year-end in 55 years, the United States prevail over all other countries. Far behind, in second position, we find the Great-Britain with 738 tracks in the top. In third place, we are back to North America with Canada (160 songs). Australia comes fourth with 108 tracks. 
 		</p>
 		<p>
-		The other assessment that can be made is the fact that all the previously quoted countries are English spoken countries. It seems that there is no available spot in the <i>Billboard</i> Hot 100 for songs not in English. If I consider France for example. France has only 14 tracks ranked in the charts and 8 of them are associated with David Guetta who lives in US and uses mainly American or English speakers to perform the lyrics of his songs. Is it the sign that good music has to be sung in English? Even if it cannot be denied that the musicality of the language of Shakespeare is great and much better than the French or the German one, I don't think this is true. Musicality is one thing, but the quality of the lyrics, the depth of the texts, the emotion of the track and the melody can overcome that.
+			The other assessment that can be made is the fact that all the previously quoted countries are English spoken countries. It seems that there is no available spot in the <i>Billboard</i> Hot 100 for songs not in English. If I consider France for example. France has only 14 tracks ranked in the charts and 8 of them are associated with David Guetta who lives in US and uses mainly American or English speakers to perform the lyrics of his songs. Is it the sign that good music has to be sung in English? Even if it cannot be denied that the musicality of the language of Shakespeare is great and much better than the French or the German one, I don't think this is true. Musicality is one thing, but the quality of the lyrics, the depth of the texts, the emotion of the track and the melody can overcome that.
 		</p>
 		<p>
 			The <i>Billboard</i> chart is American and therefore it reflects the taste of American people and also what are the tracks that are easily available to them. Based on this visualization, it seems difficult for foreign music and especially non English speaking music to become popular and successful in the States. Technology and Internet with Spotify or Youtube, enable more and more people to have access to a very wide catalog of music. But it also helps music from North America to spread all over the world and to remain the reference on the planet. Indeed, in Europe for instance, almost all the top 100 artists displayed on the first and second plots are superstars and are very well broadcast on radio and television.
@@ -809,6 +818,96 @@ tags: [dataScience, music, github, code]
 		<p>
 			To analyze the acoustic mood of the <i>Billboard</i> Hot 100 tracks, I have decided to also use a four quadrant plot. If my previous hypothesis are correct, the <strong>majority of the songs should be located on the top right quadrant</strong> (valence > 0.5 and energy > 0.5). I have chosen to use an interactive scatter plot with custom functionalities to display this data.
 		</p>
+		<p>
+			In addition to the <i>Billboard</i> data, I have also chosen to consider the <strong>"10 Best Songs of All Time"</strong>. This is a very subjective ranking, but I think this could be an interesting additional information. Indeed, I said previously that I suppose the majority of the popular tracks on the <i>Billboard</i> Hot 100 sounds happy and dynamic. I am not sure this will be the case for the best songs of all time. For example, I think sad songs can probably make an impact on the long term. I have used the data from the following website: <a target='_blank' href='http://www.thetoptens.com/songs/'>Top Ten Songs of All Time</a> to select the 10 greatest songs of all time. This is a ranking made by people coming on the website and voting for their favorite tracks. I think the results are relevant, plus all the songs are in my study period which is also an advantage. It is also important to mention that these ten tracks are not all in my <i>Billboard</i> dataset. Here is the details of these tracks <i>(on the 22/05/2016)</i>:
+		</p>
+		<table id='best-songs-table' class='table table-borderless'>
+			<tbody>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/43871b6b40f14f4d89360b68d9084802.png' class="img-responsive table-top-ten" alt="Bohemian Rhapsody"></td>
+					<td>
+						<strong>Bohemian Rhapsody - Queen</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Bohemian_Rhapsody'>https://en.wikipedia.org/wiki/Bohemian_Rhapsody</a>
+					</td>
+					<td><em class="gold">1</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/1e6f99756d0342f891d3233ac1283d21.png' class="img-responsive table-top-ten" alt="Stairway to Heaven"></td>
+					<td>
+						<strong>Stairway to Heaven - Led Zeppelin</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Stairway_to_Heaven'>https://en.wikipedia.org/wiki/Stairway_to_Heaven</a>
+					</td>
+					<td><em class="silver">2</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/419d5500087d4b35b6f22e79c9a47c74.png' class="img-responsive table-top-ten" alt="Imagine"></td>
+					<td>
+						<strong>Imagine - John Lennon</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Imagine_(John_Lennon_song)'>https://en.wikipedia.org/wiki/Imagine_(John_Lennon_song)</a>
+					</td>
+					<td><em class="bronze">3</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/fb27b5245fb7444ac4fd8cad6f0374e4.png' class="img-responsive table-top-ten" alt="Smells Like Teen Spirit"></td>
+					<td>
+						<strong>Smells Like Teen Spirit - Nirvana</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Smells_Like_Teen_Spirit'>https://en.wikipedia.org/wiki/Smells_Like_Teen_Spirit</a>
+					</td>
+					<td><em>4</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/ec559161068a480699519195e06af1e7.png' class="img-responsive table-top-ten" alt="Hotel California"></td>
+					<td>
+						<strong>Hotel California - Eagles</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Hotel_California'>https://en.wikipedia.org/wiki/Hotel_California</a>
+					</td>
+					<td><em>5</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/eed51418bdbc41bc9aa959de2d65dd5d.png' class="img-responsive table-top-ten" alt="Sweet Child O' Mine"></td>
+					<td>
+						<strong>Sweet Child O' Mine - Guns N' Roses</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Sweet_Child_o%27_Mine'>https://en.wikipedia.org/wiki/Sweet_Child_o%27_Mine</a>
+					</td>
+					<td><em>6</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/55bf2f31f75ac374ccdda18d6204824a.png' class="img-responsive table-top-ten" alt="One"></td>
+					<td>
+						<strong>One - Metallica</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/One_(Metallica_song)'>https://en.wikipedia.org/wiki/One_(Metallica_song)</a>
+					</td>
+					<td><em>7</em></td>
+				</tr>	
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/6af6a9a0d246464f976bef5193823322.png' class="img-responsive table-top-ten" alt="Comfortably Numb"></td>
+					<td>
+						<strong>Comfortably Numb - Pink Floyd</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Comfortably_Numb'>https://en.wikipedia.org/wiki/Comfortably_Numb</a>
+					</td>
+					<td><em>8</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/c2312403b76a4d75b23b2b5134142d58.png' class="img-responsive table-top-ten" alt="Like a Rolling Stone"></td>
+					<td>
+						<strong>Like a Rolling Stone - Bob Dylan</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Like_a_Rolling_Stone'>https://en.wikipedia.org/wiki/Like_a_Rolling_Stone</a>
+					</td>
+					<td><em>9</em></td>
+				</tr>
+				<tr>
+					<td class='img-col-table'><img src='http://img2-ak.lst.fm/i/u/300x300/0e4c959a450a45e89a95f65d2824d97d.png' class="img-responsive table-top-ten" alt="Lose Yourself"></td>
+					<td>
+						<strong>Lose Yourself - Eminem</strong> <br/>
+						<a target='_blank' href='https://en.wikipedia.org/wiki/Lose_Yourself'>https://en.wikipedia.org/wiki/Lose_Yourself</a>
+					</td>
+					<td><em>10</em></td>
+				</tr>					
+			</tbody>
+		</table>
+		<p>
+			Below are detailed the different functionalities of the interactive scatter plot:
+		</p>
 		<div class='well well-sm'>
 			<ul>
 				<li>
@@ -825,6 +924,9 @@ tags: [dataScience, music, github, code]
 				</li>
 				<li>
 					Once an artist has been selected, it is possible to hover over the circles to have the details of the track. If you click on one of these circles, it will play a preview of the track (30 seconds).
+				</li>
+				<li>
+					The button "Best Songs of All Time" will let you display on the graph the 10 greatest songs of all time defined previously. It is also possible to play a preview of these tracks by clicking on the associated circles.
 				</li>
 			</ul>
 		</div>
@@ -899,6 +1001,11 @@ tags: [dataScience, music, github, code]
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class='col-sm-12 bestSongsButtonDiv'>
+		<button class='btn btn-default bestSongsButton' id='bestSongsButton'>Best Songs of All Time</button>
+	</div>
+</div>
 <div class='chart-container'>
 	<! -- Non data-driven elements -->
 	<svg id='chart4'>
@@ -906,6 +1013,9 @@ tags: [dataScience, music, github, code]
 			<g class='x axis'> </g>
 			<g class='y axis'> </g>
 			<g class='grids'></g>
+			<g class='bestSongsCircles'>
+				<g class='bestSongsDefs'></g>
+			</g>
 			<g class='circles'></g>
 			<g class='averageLines'></g>
 		</g>
@@ -915,6 +1025,126 @@ tags: [dataScience, music, github, code]
 			<source class='mpeg' src='' type='audio/mpeg'>
 			<source src='' type='audio/ogg'>
 		</audio>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			The first observation that we can make by looking at the scatter plot is that the majority of the songs are located on the top right quadrant (valence > 0.5 and energy > 0.5). This is a clearer translation of what we have seen on the different histograms. According to the circumplex model of emotions, it seems that the majority of the <i>Billboard</i> tracks sounds <strong>happy</strong> and / or <strong>excited</strong>. It is a trend of the popular music of the last 55 years.
+		</p>
+		<p>
+			By clicking on the different decade buttons, we observe the phenomena that we have described on the histograms i.e. an increase of the average energy and a decrease of the average valence of the songs with time. We observe a slight translation of the musical mood from <strong>content / serene</strong> in the 60s to <strong>nervous / stressed / excited</strong> in the current decade. Depending on the perspective we take, it seems that it is either easier to make a popular music today as both high and low valence tracks are performing well or more complicated as it is more difficult to choose and detect what will be successful, there is no secret recipe (we only know that the song has to be quiet dynamic).
+		</p>
+		<p>
+			Regarding the different representative artists that I have chosen, there are two main categories. The first one corresponds to artists that can really be used as a symbol of how the music of a particular decade sounded. This is the case of <strong>The Beatles</strong> and <strong>Stevie Wonder</strong>. Indeed, we have defined earlier the sixties and the seventies as happy, content and serene decades. If we decide to isolate The Beatles and Stevie Wonder we can see that their songs on these periods are perfectly matching that definition. The Beatles, for instance, have around 13 tracks on the top right quadrant of the scatter plot. Excepted some songs like <i>Come Together</i> or <i>Let It Be</i>, their music is very positive but also dynamic and excited. It is interesting to notice that this is one of the oldest bands of the dataset but their music was already using the main factors of popularity that we have identified (positiveness and dynamism). This could be one of the reason why The Beatles are still very popular today. Their music is not old-fashioned. A similar analysis can be made for Stevie Wonder. The majority of his songs are happy and content.
+		</p>
+		<p>
+			The other artists (Michael Jackson, Mariah Carey, Eminem, Rihanna) are a bit more complicated to analyze. Indeed, they present tracks which are spread across the different quadrants of the graph. We cannot easily describe the mood of their music. They can release serene songs (like <i>Cleaning Out My Closet</i> by Eminem) as well as upset songs (like <i>Lose Yourself</i> by Eminem). <strong>Mariah Carey</strong> is the perfect example of someone able to perform songs having a very different musical mood. She has quiet a few tracks located on the top and bottom right quadrants of the chart but she also has around 13 songs on the bottom left corner (sad and depressed songs). This means that the same artist can be popular with different kind of music, by conveying different musical emotions and messages. I think this part of the talent of the artist to be able to be successful and affect people with different kind of musical moods. The last interesting thing that we can tell about these artists is that even their songs are globally scattered, in average they are close to their respective decade. 
+		</p>
+		<p>
+			Now, if we spend some time looking at <strong>the ten greatest songs of all time</strong> we will observe a different trend which matches my previous hypothesis. Indeed, these ten tracks do not follow the same valence / energy pattern as the popular songs of the <i>Billboard</i> Hot 100. They are globally <strong>negative songs</strong> (valence < 0.5) which pulled over the following emotional categories: <strong>stressed, upset, sad, depressed</strong> and even <strong>nervous or lethargic</strong>. I think that this is a very interesting observation. Popular tracks over a year tend to be dynamic and happy, after 2010 it is possible to speak about party songs that people enjoy listening in their car, while doing sports, at work... But when it goes to tracks that really affect people over time and that can remain popular across generations, the results are completely different. Tracks that can generate strong emotions and which are made of a very complex musical structure play their cards right. Even if I like and respect the work of modern musician and especially DJs, I think that amazing songs like <i>Bohemian Rhapsody</i> or <i>Stairway to Heaven</i> require much more work, and are really sophisticated compositions. The music of these songs tells us a story and can carry us away. I think that is why these tracks are ranked among the ten best songs of all time by people on the Internet. 
+		</p>
+		<p>
+			It is also interesting to notice that most of these songs are relatively old songs (all of them are excepted <i>Lose Yourself</i> by Emimem). This makes sense as to be ranked in the greatest songs of all time a song has to go through the years.
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h5>
+			Musical Mood Similarities  
+		</h5>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>
+			To conclude this study, I was interested in making a link between the musical mood of the greatest songs of all time defined previously and the songs of the <i>Billboard</i> that are in my dataset. Indeed, we have seen that these top ten songs present some 'unusual' valence / energy characteristics. Therefore, it can be of interest to have a look at the <i>Billboard</i> tracks which are the <strong>more similar</strong> to the ten best songs of all time (regarding the musical mood i.e. valence and energy). In order to do that, I have chosen to use a simple <strong>Nearest Neighbor Search</strong> also know as Proximity Search. This algorithm is defined like this on the scikit-learn documentation:
+		</p>
+		<blockquote>
+		  	<p>The principle behind nearest neighbor methods is to find a predefined number of training samples closest in distance to the new point, and predict the label from these. The number of samples can be a user-defined constant (k-nearest neighbor learning), or vary based on the local density of points (radius-based neighbor learning). The distance can, in general, be any metric measure: standard Euclidean distance is the most common choice. Neighbors-based methods are known as non-generalizing machine learning methods, since they simply “remember” all of its training data.</p>
+		  	<footer>Definition from <cite title="Nearest Neighbor Search Definition">http://scikit-learn.org/stable/modules/neighbors.html</cite></footer>
+		</blockquote>
+		<p>
+			I have used <mark>scikit-learn</mark> to perform the computation. As my number of features was equal to two, I have chosen the Euclidian distance as the metric to calculate the distance between the different tracks. I have also made the arbitrary choice of selecting five nearest neighbors.
+		</p>
+		<p>
+			To visualize the results I have chosen to use a 'Hierarchical Edge Bundling' (according to name chosen by Mike Bostock). This is basically an interactive graph where all the tracks are displayed on a radial layout and where the relations between the songs are depicted by links. I have grouped the similar tracks by decade, using the same color coding and font as the one use on the musical mood scatter plot. Doing that, it will be easy to see if the similar songs are or are not in the same decade as the considered top ten track.
+		</p>
+		<p>
+			Here are the detail of the different custom functionalities of the graph:
+		</p>
+		<div class='well well-sm'>
+			<ul>
+				<li>
+					The gray cluster on the top right corner of the chart corresponds to the greatest songs of all time. These songs are the starting point of all the links. Each of these songs is linked to several similar songs from the colored clusters.
+				</li>
+				<li>
+					The different colored clusters correspond to the similar songs sorted by decade. Each of those tracks is linked to one of the top ten songs of all time.
+				</li>				
+				<li>
+					If you hover over one track name, this will highlight the link(s) between this track and its similar song(s). This let you identify the different relations between the tracks.
+				</li>
+				<li>
+					It is possible to play a 30 seconds preview of the track by clicking on the track label on the graph.
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class='svg-container'>
+	<! -- Non data-driven elements -->
+	<svg id='chart5' class='svg-content-responsive'>
+		<g id='chart-wrapper5' class='chart-wrapper'>
+			<g class='link'> </g>
+			<g class='node'> </g>
+		</g>
+	</svg>
+	<div class='audio-player-div'>
+		<audio controls id='audio-player-best'>
+			<source class='mpeg' src='' type='audio/mpeg'>
+			<source src='' type='audio/ogg'>
+		</audio>
+	</div>
+</div>
+<div class='row top-buffer'>
+	<div class='col-md-12'>
+		<p>
+			The first general observation is that similar songs can be found in <strong>all the different decades</strong>. The most represented decades are the 1990s and the 2010s. Is it the sign that current musicians are finding their inspiration on great songs from the past? It may be true, but this cannot be assumed only by looking at this musical mood familiarity search. It is also interesting to note that Eminem track <i>Lose Yourself</i> only has <strong>contemporary neighbors</strong>. 
+		</p>
+		<p>
+			I find difficult to try to compare the mood of the different neighbors by listening to the tracks in general. The objective of this chart and study of the similarities is more to raise questions and steer people to listen to music and tracks differently. Indeed, some relations are quiet surprising and unexpected. For example, if we consider <i>Smells Like Teen Spirit</i> by Nirvana we can see that the neighbors of this track are two hip-hop songs from the 90s and even more surprising <i>Rolling in the Deep</i> by Adele and <i>Baby</i> by Justin Bieber!
+		</p>
+		<p>
+			I have spent some times looking at those relations and listening to the different tracks. I have found some interesting couples where I think it is possible to perceive the similarity of the musical mood while listening. This is very subjective and I will let you have your own opinion about it:
+			<ul>
+				<li>
+					<strong><i>Stairway to Heaven</i></strong>, Led Zeppelin with <strong><i>Can You Feel the Love Tonight</i></strong>, Elton John
+				</li>
+				<li>
+					<strong><i>Imagine</i></strong>, John Lennon with <strong><i>Ballerina Girl</i></strong>, Lionel Richie
+				</li>				
+				<li>
+					<strong><i>Sweet Child O'Mine</i></strong>, Guns N' Roses with <strong><i>No Son of Mine</i></strong>, Genesis
+				</li>
+				<li>
+					<strong><i>Comfortably Numb</i></strong>, Pink Floyd with <strong><i>How Can You Mend a Broken Heart</i></strong>, Bee Gees
+				</li>
+			</ul>
+		</p>
+	</div>
+</div>
+<div class='row'>
+	<div class='col-md-12'>
+		<h3>
+			Conclusion
+		</h3>
+	</div>
+	<div class='col-md-12'>
+		<p>
+			In this project, I have tried to look at the characteristics of the popular music of the last 55 years using the data from the <i>Billboard</i> Hot 100 year end. I have analyzed different aspect of these tracks and artists and found some interesting information. Most of all, I have spent a great time discovering new artists, new songs and nice relations between them. I also want to insist on the tremendous possibilities that music offers for data science and data analysis. I already have found additional studies that I want to lead on my data. For example, I think this will be fascinating to use natural language processing to do a <strong>sentiment analysis</strong> on the lyrics of the songs of my dataset and to compare the results with what I have found for the musical mood. Therefore, it should be possible to see if we can have a dissonance between the lyrical and musical mood.
+		</p>
 	</div>
 </div>
 
@@ -930,7 +1160,9 @@ tags: [dataScience, music, github, code]
 <script src="{{site.basurl}}/public/scripts/dominance.js"></script>
 <script src="{{site.basurl}}/public/scripts/location.js"></script>
 <script src="{{site.basurl}}/public/scripts/mood.js"></script>
+<script src="{{site.basurl}}/public/scripts/mood-bestSongs.js"></script>
 <script src="{{site.basurl}}/public/scripts/common.js"></script>
+
 
 
 

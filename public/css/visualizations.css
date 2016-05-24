@@ -27,8 +27,11 @@
   margin-left: 20%;
 }
 
+p small.italicNote {
+  font-style: italic;
+}
+
 #chart, #chart2, #chart4 {
-  background-color: #f7f7f9; 
   width: 95%;
   height: 95%;
   min-width: 400px;
@@ -38,9 +41,9 @@
   left: 2.5%;
   top: 2.5%;
   bottom: 2.5%;
-  border-color: #ddd;
+  /*border-color: #ddd;
   border-width: 1px;
-  border-radius: 4px;
+  border-radius: 4px;*/
 }
 
 #chart3 {
@@ -59,6 +62,19 @@
   border-radius: 4px;
 }
 
+#chart5 {
+  width: 95%;
+  min-width: 400px;
+  min-height: 300px;
+  right: 2.5%;
+  left: 2.5%;
+  top: 2.5%;
+  bottom: 2.5%;
+  /*border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px;*/
+}
+
 #chart3 g.map g.countries path {
   /*fill: #FFF;*/
   stroke: #000;
@@ -74,10 +90,9 @@ div.artistDetails {
 }
 
 div.chart-container {
+  min-width: 90vw;
   position: relative;
   min-height: 90vh;
-  min-width: 90vw;
-  margin-left: -17.5vw;
 }
 
 div.numberOfArtistsSelectorParent {
@@ -542,4 +557,174 @@ p._10s-label {
   margin-top: 4px;
 }
 
+g.bestSongsCircles {
+  display: none;
+}
+
+#chart4 g.bestSongsCircles circle.bestSongs:hover {
+  cursor: pointer;
+}
+
+@font-face {
+    font-family: 'FontBestSongs'; /*a name to be used later*/
+    src: url('/public/fonts/good-times.regular.ttf'); /*URL to font*/
+}
+
+button.bestSongsButton {
+  font-family: 'FontBestSongs';
+}
+
+div.bestSongsButtonDiv {
+    text-align: center;
+    position: inherit;
+    transform: inherit;
+    margin-top: 20px;
+}
+
+/* Best Songs table */
+table.table-borderless tbody tr td, table.table-borderless tbody tr th, table.table-borderless thead tr th {
+    border: none;
+    vertical-align: middle;
+}
+
+table#best-songs-table {
+  border: none;
+}
+
+img.table-top-ten {
+  width: 80px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+td .gold {
+    background: #D6A328;
+}
+
+td .silver {
+    background: #A2A7A7;
+}
+
+td .bronze {
+    background: #986840;
+}
+
+td em {
+    float: left;
+    background: #BEBEBE;
+    color: #FFFFFF;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    line-height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    margin: 0 0 0 0;
+}
+
+/* Similarity graph */ 
+
+.node {
+  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #bbb;
+}
+
+.node:hover {
+  fill: #000;
+  cursor: pointer;
+}
+
+.link {
+  stroke: #bbb;
+  stroke-opacity: .4;
+  fill: none;
+  pointer-events: none;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  font-weight: 700;
+  opacity: 1;
+}
+
+.node--source {
+  fill: #2ca02c;
+}
+
+.node--target {
+  fill: #d62728;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.link--source {
+  stroke: #d62728;
+}
+
+.link--target {
+  stroke: #2ca02c;
+}
+
+
+text._60s.node {
+  font-family: 'Font60s';
+  fill: rgba(31, 119, 180, 0.8);
+  font-size: 14px;
+}
+
+text._70s.node {
+  font-family: 'Font70s';
+  fill: rgba(255, 127, 14, 0.5);
+}
+
+text._80s.node {
+  font-family: 'Font80s';
+  fill: rgba(44, 160, 44, 0.5);
+}
+
+
+text._90s.node {
+  font-family: 'Font90s';
+  fill: rgba(214, 39, 40, 0.5);
+}
+
+text._00s.node {
+  font-family: 'Font00s';
+  fill: rgba(148, 103, 189, 0.5);
+}
+
+text._10s.node {
+  font-family: 'Font10s';
+  fill: rgba(140, 86, 75, 0.5);
+}
+
+text.bestSongs.node {
+  font-size: 13px;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    min-width: 90vw;
+    min-height: 90vh;
+    padding-bottom: 130%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
 
