@@ -61,6 +61,11 @@
 			updateBestSongs(bestSongs);
 			// Resize
 			d3.select(window).on('resize', resize4); 
+			d3.select(window).on('resize', function() {
+				resize(); 
+				resize2();
+				resize4();
+			});
 			resize4();
 		});
 	});
@@ -121,7 +126,7 @@ function updateBestSongs(bestSongs) {
 		
 		selectedCircle.transition()
 			.duration(200)
-			.attr('r', hoveredRadius4)
+			.attr('r', hoveredRadiusBestSongs4)
 			.each("end", function(d){ 	
 				return tip4.show(d, this); 
 			});
@@ -132,7 +137,7 @@ function updateBestSongs(bestSongs) {
 	u.on('mouseout', function(d) {
 		var selectedCircle = d3.select(this);
 		if(!(selectedCircle.classed('playing'))){		
-			selectedCircle.attr('r', radiusBestSongs4)
+			selectedCircle.attr('r', hoveredRadiusBestSongs4)
 							.transition()
 							.duration(200);
 			
@@ -515,13 +520,24 @@ function resize4() {
     var width4 = parseInt(d3.select('#chart4').style('width')) - margin4.left - margin4.right,
     	height4 = parseInt(d3.select('#chart4').style('height')) - margin4.top - margin4.bottom;
 
-    if (((width4 + margin4.left + margin4.right) <= 500) && ((height4 + margin4.top + margin4.bottom) <= 400)){
+	// Radius details
+	if (((width4 + margin4.left + margin4.right) <= 500) && ((height4 + margin4.top + margin4.bottom) <= 400)){
 		radius4 = radiusValues4['Small'];
 		hoveredRadius4 = hoveredRadiusValues4['Small'];
+		radiusBestSongs4 = radiusBestSongsValues4['Small'];
+		hoveredRadiusBestSongs4 = hoveredRadiusValues4['Small'];
+	} 
+	else if(((width4 + margin4.left + margin4.right) >= 1500) && ((height4 + margin4.top + margin4.bottom) >= 700)){
+		radiusBestSongs4 = radiusBestSongsValues4['Big'];
+		radius4 = radiusValues4['Medium'];
+		hoveredRadius4 = hoveredRadiusValues4['Medium'];
+		hoveredRadiusBestSongs4 = hoveredRadiusValues4['Big'];
 	} 
 	else {
 		radius4 = radiusValues4['Medium'];
 		hoveredRadius4 = hoveredRadiusValues4['Medium'];
+		radiusBestSongs4 = radiusBestSongsValues4['Medium'];
+		hoveredRadiusBestSongs4 = hoveredRadiusValues4['Medium'];
 	} 
 
 
@@ -667,23 +683,28 @@ var hoveredRadiusValues4 = {'Small': 22, 'Medium': 30, 'Big': 40};
 
 var radiusBestSongsValues4 = {'Small': 12, 'Medium': 17, 'Big': 30};
 
-var radius4 = null;
-var hoveredRadius4 = null;
-var radiusBestSongs4 = null;
+var radius4 = null,
+	hoveredRadius4 = null, 
+	radiusBestSongs4 = null,
+	hoveredRadiusBestSongs4 = null;
+
 if (((width4 + margin4.left + margin4.right) <= 500) && ((height4 + margin4.top + margin4.bottom) <= 400)){
 	radius4 = radiusValues4['Small'];
 	hoveredRadius4 = hoveredRadiusValues4['Small'];
 	radiusBestSongs4 = radiusBestSongsValues4['Small'];
+	hoveredRadiusBestSongs4 = hoveredRadiusValues4['Small'];
 } 
 else if(((width4 + margin4.left + margin4.right) >= 1500) && ((height4 + margin4.top + margin4.bottom) >= 700)){
 	radiusBestSongs4 = radiusBestSongsValues4['Big'];
 	radius4 = radiusValues4['Medium'];
 	hoveredRadius4 = hoveredRadiusValues4['Medium'];
+	hoveredRadiusBestSongs4 = hoveredRadiusValues4['Big'];
 } 
 else {
 	radius4 = radiusValues4['Medium'];
 	hoveredRadius4 = hoveredRadiusValues4['Medium'];
 	radiusBestSongs4 = radiusBestSongsValues4['Medium'];
+	hoveredRadiusBestSongs4 = hoveredRadiusValues4['Medium'];
 } 
 
 // Scales
@@ -854,27 +875,36 @@ bestSongsButton.on('click', function(){
 // Glyphicon
 var playingIcon = container4.select('.circles')
 						.append("svg:foreignObject")
-							.attr("width", 20)
-							.attr("height", 20)
+							.attr("width", hoveredRadius4)
+							.attr("height", hoveredRadius4)
 							.attr("id", "playingIcon")
+							.attr("class", "foreignObject")
+							.style('position', 'relative')
+							.style('z-index', '1')
 							.style('display', 'none');
 playingIcon.append("xhtml:span")
 		.attr("class", "control glyphicon glyphicon-volume-up");
 
 var playIcon = container4.select('.circles')
 						.append("svg:foreignObject")
-							.attr("width", 20)
-							.attr("height", 20)
+							.attr("width", hoveredRadius4)
+							.attr("height", hoveredRadius4)
 							.attr("id", "playIcon")
+							.attr("class", "foreignObject")
+							.style('position', 'relative')
+							.style('z-index', '1')
 							.style('display', 'none');
 playIcon.append("xhtml:span")
 		.attr("class", "control glyphicon glyphicon-play");
 
 var pauseIcon = container4.select('.circles')
 						.append("svg:foreignObject")
-							.attr("width", 20)
-							.attr("height", 20)
+							.attr("width", hoveredRadius4)
+							.attr("height", hoveredRadius4)
 							.attr("id", "pauseIcon")
+							.attr("class", "foreignObject")
+							.style('position', 'relative')
+							.style('z-index', '1')
 							.style('display', 'none');
 pauseIcon.append("xhtml:span")
 		.attr("class", "control glyphicon glyphicon-pause");

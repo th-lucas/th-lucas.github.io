@@ -107,7 +107,7 @@
 		// Circles creation
 		updateCircles2(dataset2);
 		// Resize
-		d3.select(window).on('resize', resize2); 
+		//d3.select(window).on('resize', resize2); 
 		resize2();
 	});
 }

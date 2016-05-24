@@ -54,7 +54,6 @@
 		// Regression line
 		drawRegressionLine(countMax, countMin);
 		// Resize
-		d3.select(window).on('resize', resize); 
 		resize();	
 	});
 }
@@ -394,6 +393,8 @@ function resize() {
 	    .text(yAxisText);
 
 	container.selectAll('circle')
+		.transition()
+		.duration(1000)
 		.attr('cx', function(d) {
 			if(d3.select(this).classed('multipleArtists')){
 				var x_jitter = Math.pow(-1, jitterIndex) * jitter - Math.pow(-1, jitterIndex) * (jitter / 2);

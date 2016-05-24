@@ -41,9 +41,6 @@ p small.italicNote {
   left: 2.5%;
   top: 2.5%;
   bottom: 2.5%;
-  /*border-color: #ddd;
-  border-width: 1px;
-  border-radius: 4px;*/
 }
 
 #chart3 {
@@ -63,13 +60,13 @@ p small.italicNote {
 }
 
 #chart5 {
-  width: 95%;
+  /*width: 95%;
   min-width: 400px;
   min-height: 300px;
   right: 2.5%;
   left: 2.5%;
   top: 2.5%;
-  bottom: 2.5%;
+  bottom: 2.5%;*/
   /*border-color: #ddd;
   border-width: 1px;
   border-radius: 4px;*/
@@ -136,10 +133,12 @@ text.x.label, text.y.label {
 
 circle.multipleArtists {
   stroke: #ED5565;
+  cursor: pointer;
 }
 
 circle.singleArtist {
   stroke: #656D78;
+  cursor: pointer;
 }
 
 circle:hover {
@@ -319,8 +318,10 @@ div.decadeSelectorParent {
   cursor: default;
 }
 
-#chart4 circle.tracksToDisplay:hover {
+#chart4 circle.tracksToDisplay {
   cursor: pointer;
+  position: relative;
+  z-index: 10;
 }
 
 circle._60s {
@@ -447,7 +448,6 @@ label.inactive {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   filter: gray;
-  filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/s….3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
   opacity: .7;
 }
 
@@ -555,13 +555,14 @@ p._10s-label {
   font-size: x-large;
   margin-left: 4px;
   margin-top: 4px;
+  z-index: 1;
 }
 
 g.bestSongsCircles {
   display: none;
 }
 
-#chart4 g.bestSongsCircles circle.bestSongs:hover {
+#chart4 g.bestSongsCircles circle.bestSongs {
   cursor: pointer;
 }
 
@@ -717,7 +718,7 @@ text.bestSongs.node {
     position: relative;
     min-width: 90vw;
     min-height: 90vh;
-    padding-bottom: 130%; /* aspect ratio */
+   /* padding-bottom: 140%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
 }

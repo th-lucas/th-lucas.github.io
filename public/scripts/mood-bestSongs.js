@@ -327,7 +327,7 @@ var line = d3.svg.line.radial()
 
 var svg5 = d3.select('#chart5')
 	.attr("preserveAspectRatio", "xMidYMid meet")
-	.attr("viewBox", "-600 -450 1200 1200")
+	.attr("viewBox", "-500 -380 1000 900")
    //class to make it responsive
    .classed("svg-content-responsive", true); 
 		  
@@ -342,27 +342,33 @@ var nodes = [],
 // Glyphicons
 var playingIconBest = container5.select('.node')
 					.append("svg:foreignObject")
-						.attr("width", 20)
-						.attr("height", 20)
+						.attr("width", 50)
+						.attr("height", 50)
 						.attr("id", "playingIcon-best")
+						.style('position', 'relative')
+						.style('z-index', '1')
 						.style('display', 'none');
 playingIconBest.append("xhtml:span")
 		.attr("class", "control glyphicon glyphicon-volume-up");
 
 var playIconBest = container5.select('.node')
 						.append("svg:foreignObject")
-							.attr("width", 20)
-							.attr("height", 20)
+							.attr("width", 50)
+							.attr("height", 50)
 							.attr("id", "playIcon")
+							.style('position', 'relative')
+							.style('z-index', '1')
 							.style('display', 'none');
 playIconBest.append("xhtml:span")
 		.attr("class", "control glyphicon glyphicon-play");
 
 var pauseIconBest = container5.select('.node')
 						.append("svg:foreignObject")
-							.attr("width", 20)
-							.attr("height", 20)
+							.attr("width", 50)
+							.attr("height", 50)
 							.attr("id", "pauseIcon")
+							.style('position', 'relative')
+							.style('z-index', '1')
 							.style('display', 'none');
 pauseIconBest.append("xhtml:span")
 		.attr("class", "control glyphicon glyphicon-pause");
